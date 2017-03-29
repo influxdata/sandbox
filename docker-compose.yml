@@ -1,0 +1,40 @@
+version: '2'
+services:
+  chronograf:
+    image: quay.io/influxdb/chronograf:1.2.0-beta5
+    volumes:
+      - ./chronograf/data/:/var/lib/chronograf/
+    links:
+      - influxdb
+      - kapacitor
+    ports:
+      - "8888:8888"
+    depends_on:
+      - kapacitor
+      - influxdb
+      - telegraf
+  telegraf:
+    image: telegraf:1.2.1
+    environment:
+      HOSTNAME: "telegraf-getting-started"
+    links: 
+      - influxdb
+    volumes:
+      - ./telegraf/:/etc/telegraf/
+      - /var/run/docker.sock:/var/run/docker.sock
+  influxdb:
+    image: influxdb:1.2.2
+    volumes:
+      - ./influxdb/data:/var/lib/influxdb
+      - ./influxdb/config/:/etc/influxdb/
+    ports:
+      - "8086"
+  kapacitor:
+    image: kapacitor:1.2.0
+    volumes:
+      - ./kapacitor/data/:/var/lib/kapacitor
+      - ./kapacitor/config/:/etc/kapacitor/
+    links:
+      - influxdb
+    ports:
+      - "9092"
