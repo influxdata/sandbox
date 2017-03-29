@@ -1,0 +1,94 @@
+#!/bin/bash
+
+sandbox () {
+  
+  # Enter attaches users to a shell in the desired container
+  enter () {
+    case $2 in
+      influxdb)
+        echo "Entering /bin/bash session in the influxdb container..."
+        docker exec -it sandbox_influxdb_1 /bin/bash
+        ;;
+      chronograf)
+        echo "Entering /bin/sh session in the chronograf container..."
+        docker exec -it sandbox_chronograf_1 /bin/sh
+        ;;
+      kapacitor)
+        echo "Entering /bin/bash session in the kapacitor container..."
+        docker exec -it sandbox_kapacitor_1 /bin/bash
+        ;;
+      telegraf)
+        echo "Entering /bin/bash session in the telegraf container..."
+        docker exec -it sandbox_telegraf_1 /bin/bash
+        ;;
+      *)
+        echo "sandbox enter (influxdb||chronograf||kapacitor||telegraf)"
+        ;;
+    esac
+  }
+  
+  # Logs streams the logs from the container to the shell
+  logs () {
+    case $2 in
+      influxdb)
+        echo "Following the logs from the influxdb container..."
+        docker logs -f sandbox_influxdb_1
+        ;;
+      chronograf)
+        echo "Following the logs from the chronograf container..."
+        docker logs -f sandbox_chronograf_1
+        ;;
+      kapacitor)
+        echo "Following the logs from the kapacitor container..."
+        docker logs -f sandbox_kapacitor_1
+        ;;
+      telegraf)
+        echo "Following the logs from the telegraf container..."
+        docker logs -f sandbox_telegraf_1
+        ;;
+      *)
+        echo "sandbox logs (influxdb||chronograf||kapacitor||telegraf)"
+        ;;
+    esac
+  }
+
+  case $1 in
+    up)
+      echo "Spinning up Docker Images..."
+      docker-compose up -d
+      echo "Opening tabs in browser..."
+      sleep 3
+      open http://localhost:8888
+      open http://localhost:3000
+      echo "Streaming container logs..."
+      docker-compose logs -f
+      ;;
+    down)
+      echo "Stopping and removing running containers..."
+      docker-compose down
+      ;;
+    delete-data)
+      echo "deleting all influxdb, kapacitor and chronograf data..."
+      rm -rf kapacitor/data influxdb/data chronograf/data
+      ;;
+    enter)
+      enter $@
+      ;;
+    logs)
+      logs $@
+      ;;
+    *)
+      cat <<-EOF
+sandbox commands:
+  up          -> spin up the sandbox environment
+  down        -> tear down the sandbox environment
+  delete-data -> delete all data created by running the sandbox
+  
+  enter (influxdb||kapacitor||chronograf||telegraf) -> enter the specified container
+  logs  (influxdb||kapacitor||chronograf||telegraf) -> stream logs for the specified container
+EOF
+      ;;
+  esac
+}
+
+sandbox $@

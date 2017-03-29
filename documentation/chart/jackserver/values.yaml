@@ -1,0 +1,41 @@
+## replicas controls how many pods will be run and at what CPU Utilization the deployment will be scaled
+## 
+replicas:
+  initial: 2
+  max: 20
+  cpuUtilization: 70
+  
+## image controls which image is used for the pods
+##
+image:
+  repository: gcr.io/jackzampolin-web/jackserver
+  tag: 0.0.8
+  pullPolicy: Always
+
+## Resources controls max resources allocated to the individual pods
+## 
+resources:
+  limits:
+    cpu: 1
+    memory: 2Gi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+    
+## service controls the application ports
+##
+service:
+  containerPort: 3000
+  servicePort: 80
+  
+## ingress controls the ingress resource settings
+##
+ingress:
+  enabled: true
+  secretName: "jackserver-tls"
+  domains:
+    - "jackzampolin.com"
+    - "www.jackzampolin.com"
+  annotations:
+    kubernetes.io/tls-acme: "true"
+    kubernetes.io/ingress.class: "nginx"
