@@ -77,15 +77,6 @@ sandbox () {
     delete-data)
       echo "deleting all influxdb, kapacitor and chronograf data..."
       rm -rf kapacitor/data influxdb/data chronograf/data
-      echo "deleting all docker images for sandbox..."
-      echo "kapacitor..."
-      docker rmi $(docker images --filter reference='kapacitor:*' -q) > /dev/null 2>&1
-      echo "influxdb..."
-      docker rmi $(docker images --filter reference='influxdb:*' -q) > /dev/null 2>&1
-      echo "telegraf..."
-      docker rmi $(docker images --filter reference='telegraf:*' -q) > /dev/null 2>&1
-      echo "chronograf..."
-      docker rmi $(docker images --filter reference='chronograf:*' -q) > /dev/null 2>&1
       ;;
     docker-clean)
       echo "Stopping all running containers..."
@@ -104,7 +95,7 @@ sandbox () {
 sandbox commands:
   up           -> spin up the sandbox environment
   down         -> tear down the sandbox environment
-  delete-data  -> delete all data created and images pulled by sandbox
+  delete-data  -> delete all data created by the TICK Stack
   docker-clean -> stop and remove all running docker containers
   
   enter (influxdb||kapacitor||chronograf||telegraf) -> enter the specified container
