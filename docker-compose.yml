@@ -30,7 +30,7 @@ services:
       - ./influxdb/data:/var/lib/influxdb
       - ./influxdb/config/:/etc/influxdb/
     ports:
-      - "8086"
+      - "8086:8086"
   kapacitor:
     image: kapacitor:1.2.0
     volumes:
@@ -39,7 +39,7 @@ services:
     links:
       - influxdb
     ports:
-      - "9092"
+      - "9092:9092"
   documentation:
     build:
       context: ./documentation
