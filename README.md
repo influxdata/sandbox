@@ -1,6 +1,8 @@
 # TICK Sandbox
 
-This repo is a quick way to get the entire TICK Stack spun up and working together. It uses [docker](https://www.docker.com/) to spin up the full TICK stack in a connected fashion.
+This repo is a quick way to get the entire TICK Stack spun up and working together. It uses [docker](https://www.docker.com/) to spin up the full TICK stack in a connected fashion. This is heavily tested on Mac and should mostly work on linux.
+
+To get started you need a running docker installation. If you do not have one, go [here and download](https://docs.docker.com/docker-for-mac/install/) the Stable release.
 
 ### Running 
 
