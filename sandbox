@@ -58,8 +58,15 @@ sandbox () {
       docker-compose up -d
       echo "Opening tabs in browser..."
       sleep 3
-      open http://localhost:8888
-      open http://localhost:3000
+      if [ $(uname) == "Darwin" ]; then
+        open http://localhost:8888
+        open http://localhost:3000
+      elif [ $(uname) == "Linux" ]; then
+        sensible-browser http://localhost:8888
+        sensible-browser http://localhost:3000
+      else
+        echo "no browser detected..."
+      fi
       echo "Streaming container logs..."
       docker-compose logs -f
       ;;
@@ -70,6 +77,21 @@ sandbox () {
     delete-data)
       echo "deleting all influxdb, kapacitor and chronograf data..."
       rm -rf kapacitor/data influxdb/data chronograf/data
+      echo "deleting all docker images for sandbox..."
+      echo "kapacitor..."
+      docker rmi $(docker images --filter reference='kapacitor:*' -q) > /dev/null 2>&1
+      echo "influxdb..."
+      docker rmi $(docker images --filter reference='influxdb:*' -q) > /dev/null 2>&1
+      echo "telegraf..."
+      docker rmi $(docker images --filter reference='telegraf:*' -q) > /dev/null 2>&1
+      echo "chronograf..."
+      docker rmi $(docker images --filter reference='chronograf:*' -q) > /dev/null 2>&1
+      ;;
+    docker-clean)
+      echo "Stopping all running containers..."
+      docker stop $(docker ps -a -q)
+      echo "Removing all containers..."
+      docker rm $(docker ps -a -q)
       ;;
     enter)
       enter $@
@@ -80,9 +102,10 @@ sandbox () {
     *)
       cat <<-EOF
 sandbox commands:
-  up          -> spin up the sandbox environment
-  down        -> tear down the sandbox environment
-  delete-data -> delete all data created by running the sandbox
+  up           -> spin up the sandbox environment
+  down         -> tear down the sandbox environment
+  delete-data  -> delete all data created and images pulled by sandbox
+  docker-clean -> stop and remove all running docker containers
   
   enter (influxdb||kapacitor||chronograf||telegraf) -> enter the specified container
   logs  (influxdb||kapacitor||chronograf||telegraf) -> stream logs for the specified container

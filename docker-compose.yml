@@ -1,7 +1,7 @@
 version: '2'
 services:
   chronograf:
-    image: quay.io/influxdb/chronograf:1.2.0-beta5
+    image: quay.io/influxdb/chronograf:1.2.0-beta7
     volumes:
       - ./chronograf/data/:/var/lib/chronograf/
     links:
