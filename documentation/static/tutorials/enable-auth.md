@@ -1,6 +1,6 @@
-# Enabling Authentication for InfluxDB
+# Enabling Authentication
 
-First you will need to create an [admin user](https://docs.influxdata.com/influxdb/v1.2/query_language/authentication_and_authorization/#authorization) on the database:
+First you will need to create an [admin user](https://docs.influxdata.com/influxdb/v1.2/query_language/authentication_and_authorization/#authorization) on your influxdb instance:
 
 ```
 $ ./sandbox influxdb

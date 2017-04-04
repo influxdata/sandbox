@@ -1,48 +1,65 @@
 version: '2'
 services:
   chronograf:
+    # Currently our Chronograf images are hosted on quay.
+    # Full tag list: https://quay.io/repository/influxdb/chronograf?tab=tags
     image: quay.io/influxdb/chronograf:1.2.0-beta7
     volumes:
+      # Mount for chronograf database
       - ./chronograf/data/:/var/lib/chronograf/
     links:
+      # Chronograf requires network access to InfluxDB and Kapacitor
       - influxdb
       - kapacitor
     ports:
+      # The WebUI for Chronograf is served on port 8888
       - "8888:8888"
     depends_on:
       - kapacitor
       - influxdb
       - telegraf
   telegraf:
+    # Full tag list: https://hub.docker.com/r/library/telegraf/tags/
     image: telegraf:1.2.1
     environment:
       HOSTNAME: "telegraf-getting-started"
+    # Telegraf requires network access to InfluxDB
     links: 
       - influxdb
     volumes:
+      # Mount for telegraf configuration
       - ./telegraf/:/etc/telegraf/
+      # Mount for Docker API access
       - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
       - influxdb
   influxdb:
+    # Full tag list: https://hub.docker.com/r/library/influxdb/tags/
     image: influxdb:1.2.2
     volumes:
+      # Mount for influxdb data directory
       - ./influxdb/data:/var/lib/influxdb
+      # Mount for influxdb configuration
       - ./influxdb/config/:/etc/influxdb/
     ports:
+      # The API for InfluxDB is served on port 8086
       - "8086:8086"
   kapacitor:
+    # Full tag list: https://hub.docker.com/r/library/kapacitor/tags/
     image: kapacitor:1.2.0
     volumes:
+      # Mount for kapacitor data directory
       - ./kapacitor/data/:/var/lib/kapacitor
+      # Mount for kapacitor configuration
       - ./kapacitor/config/:/etc/kapacitor/
+    # Kapacitor requires network access to Influxdb
     links:
       - influxdb
     ports:
+      # The API for Kapacitor is served on port 9092
       - "9092:9092"
   documentation:
     build:
       context: ./documentation
     ports: 
       - "3000:3000"
-      

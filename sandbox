@@ -1,4 +1,6 @@
 #!/bin/bash
+set -eo pipefail
+IFS=$'\n\t'
 
 sandbox () {
   
@@ -55,6 +57,7 @@ sandbox () {
   case $1 in
     up)
       echo "Spinning up Docker Images..."
+      echo "If this is your first time starting sandbox this might take a minute..."
       docker-compose up -d
       echo "Opening tabs in browser..."
       sleep 3
@@ -67,8 +70,6 @@ sandbox () {
       else
         echo "no browser detected..."
       fi
-      echo "Streaming container logs..."
-      docker-compose logs -f
       ;;
     down)
       echo "Stopping and removing running containers..."
@@ -87,9 +88,11 @@ sandbox () {
       ;;
     docker-clean)
       echo "Stopping all running containers..."
-      docker stop $(docker ps -a -q)
+      docker stop $(docker ps -a -q) > /dev/null 2>&1
       echo "Removing all containers..."
-      docker rm $(docker ps -a -q)
+      docker rm $(docker ps -a -q) > /dev/null 2>&1
+      echo "Removing TICK images..."
+      docker rmi sandbox_documentation influxdb:1.2.2 telegraf:1.2.1 kapacitor:1.2.0 quay.io/influxdb/chronograf:1.2.0-beta7 > /dev/null 2>&1
       ;;
     influxdb)
       echo "Entering the influx cli..."
@@ -119,9 +122,9 @@ sandbox commands:
   enter (influxdb||kapacitor||chronograf||telegraf) -> enter the specified container
   logs  (influxdb||kapacitor||chronograf||telegraf) -> stream logs for the specified container
   
-  delete-data  -> delete all data created by the TICK Stack
-  docker-clean -> stop and remove all running docker containers
-  rebuild-docs -> rebuild the documentation container to see updates
+  delete-data  -> delete all data created by the TICK Stack 
+  docker-clean -> stop and remove all running docker containers and images
+  rebuild-docs -> rebuild the documentation image
 EOF
       ;;
   esac

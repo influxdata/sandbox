@@ -5,3 +5,4 @@
 ## Tutorials
 
 + [Enabling Auth in InfluxDB](/tutorials/enable-auth)
++ [Create Alert](/tutorials/create-alert)
