@@ -1,7 +1,7 @@
-## Tutorials
+## Getting started
 
 + [Understanding the Sandbox](/tutorials/understanding-sandbox)
-+ [Intro to InfluxDB](/tutorials/intro-influxdb)
-+ [Intro to Kapacitor](/tutorials/intro-kapacitor)
-+ [Intro to Telegraf](/tutorials/intro-telegraf)
-+ [Intro to Chronograf](/tutorials/intro-chronograf)
+
+## Tutorials
+
++ [Enabling Auth in InfluxDB](/tutorials/enable-auth)

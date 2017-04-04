@@ -74,6 +74,13 @@ sandbox () {
       echo "Stopping and removing running containers..."
       docker-compose down
       ;;
+    restart)
+      echo "Stopping all processes..."
+      docker-compose down > /dev/null 2>&1
+      echo "Starting all processes..."
+      docker-compose up -d > /dev/null 2>&1
+      echo "Services available!"
+      ;;
     delete-data)
       echo "deleting all influxdb, kapacitor and chronograf data..."
       rm -rf kapacitor/data influxdb/data chronograf/data
@@ -83,6 +90,17 @@ sandbox () {
       docker stop $(docker ps -a -q)
       echo "Removing all containers..."
       docker rm $(docker ps -a -q)
+      ;;
+    influxdb)
+      echo "Entering the influx cli..."
+      docker exec -it sandbox_influxdb_1 /usr/bin/influx
+      ;;
+    rebuild-docs)
+      echo "Rebuilding documentation container..."
+      docker build -t sandbox_documentation documentation/ > /dev/null 2>&1
+      echo "Restarting..."
+      docker-compose down > /dev/null 2>&1
+      docker-compose up -d > /dev/null 2>&1
       ;;
     enter)
       enter $@
@@ -95,11 +113,15 @@ sandbox () {
 sandbox commands:
   up           -> spin up the sandbox environment
   down         -> tear down the sandbox environment
-  delete-data  -> delete all data created by the TICK Stack
-  docker-clean -> stop and remove all running docker containers
+  restart      -> restart the sandbox
+  influxdb     -> attach to the influx cli
   
   enter (influxdb||kapacitor||chronograf||telegraf) -> enter the specified container
   logs  (influxdb||kapacitor||chronograf||telegraf) -> stream logs for the specified container
+  
+  delete-data  -> delete all data created by the TICK Stack
+  docker-clean -> stop and remove all running docker containers
+  rebuild-docs -> rebuild the documentation container to see updates
 EOF
       ;;
   esac
