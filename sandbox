@@ -62,8 +62,8 @@ sandbox () {
       echo "Opening tabs in browser..."
       sleep 3
       if [ $(uname) == "Darwin" ]; then
-        open http://localhost:8888
         open http://localhost:3000
+        open http://localhost:8888
       elif [ $(uname) == "Linux" ]; then
         sensible-browser http://localhost:8888
         sensible-browser http://localhost:3000
