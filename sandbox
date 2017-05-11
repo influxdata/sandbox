@@ -9,19 +9,19 @@ sandbox () {
     case $2 in
       influxdb)
         echo "Entering /bin/bash session in the influxdb container..."
-        docker exec -it sandbox_influxdb_1 /bin/bash
+        docker-compose exec influxdb /bin/bash
         ;;
       chronograf)
         echo "Entering /bin/sh session in the chronograf container..."
-        docker exec -it sandbox_chronograf_1 /bin/sh
+        docker-compose exec chronograf /bin/sh
         ;;
       kapacitor)
         echo "Entering /bin/bash session in the kapacitor container..."
-        docker exec -it sandbox_kapacitor_1 /bin/bash
+        docker-compose exec kapacitor /bin/bash
         ;;
       telegraf)
         echo "Entering /bin/bash session in the telegraf container..."
-        docker exec -it sandbox_telegraf_1 /bin/bash
+        docker-compose exec telegraf /bin/bash
         ;;
       *)
         echo "sandbox enter (influxdb||chronograf||kapacitor||telegraf)"
@@ -34,19 +34,19 @@ sandbox () {
     case $2 in
       influxdb)
         echo "Following the logs from the influxdb container..."
-        docker logs -f sandbox_influxdb_1
+        docker-compose logs -f influxdb
         ;;
       chronograf)
         echo "Following the logs from the chronograf container..."
-        docker logs -f sandbox_chronograf_1
+        docker-compose logs -f chronograf
         ;;
       kapacitor)
         echo "Following the logs from the kapacitor container..."
-        docker logs -f sandbox_kapacitor_1
+        docker-compose logs -f kapacitor
         ;;
       telegraf)
         echo "Following the logs from the telegraf container..."
-        docker logs -f sandbox_telegraf_1
+        docker-compose logs -f telegraf
         ;;
       *)
         echo "sandbox logs (influxdb||chronograf||kapacitor||telegraf)"
@@ -96,7 +96,7 @@ sandbox () {
       ;;
     influxdb)
       echo "Entering the influx cli..."
-      docker exec -it sandbox_influxdb_1 /usr/bin/influx
+      docker-compose exec influxdb /usr/bin/influx
       ;;
     rebuild-docs)
       echo "Rebuilding documentation container..."
