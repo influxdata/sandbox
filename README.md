@@ -41,7 +41,7 @@ Once you have configured the InfluxDB URL you should see your dashboard:
 
 Then click on the gear icon and select `Kapacitor`:
 
-![Kapacitor Configuration](./documentation/static/images/open-kapacitor-configuration.png)
+![Kapacitor Configuration](./documentation/static/images/kapacitor-config.png)
 
 Finally, enter `http://kapacitor:9092` as the URL and click `Connect Kapacitor`:
 
