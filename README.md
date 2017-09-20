@@ -48,3 +48,9 @@ Finally, enter `http://kapacitor:9092` as the URL and click `Connect Kapacitor`:
 ![Kapacitor Configuration](./documentation/static/images/configure-kapacitor.png)
 
 Then you are ready to get started with the TICK Stack!
+
+Visit `http:localhost:888` and click the host to see your dashboard!
+>Note: see [influx-stress](https://github.com/influxdata/influx-stress) to create data for your sandbox. 
+>
+
+![Dashboard](./documentation/static/images/sandbox_dashboard.jpg)
