@@ -20,7 +20,7 @@ services:
       - telegraf
   telegraf:
     # Full tag list: https://hub.docker.com/r/library/telegraf/tags/
-    image: telegraf:1.4.4-1
+    image: telegraf:1.4.3
     environment:
       HOSTNAME: "telegraf-getting-started"
     # Telegraf requires network access to InfluxDB
