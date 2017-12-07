@@ -72,13 +72,13 @@ sandbox () {
       fi
       ;;
     down)
-      echo "Stopping and removing running containers..."
+      echo "Stopping and removing running sandbox containers..."
       docker-compose down
       ;;
     restart)
-      echo "Stopping all processes..."
+      echo "Stopping all sandbox processes..."
       docker-compose down > /dev/null 2>&1
-      echo "Starting all processes..."
+      echo "Starting all sandbox processes..."
       docker-compose up -d > /dev/null 2>&1
       echo "Services available!"
       ;;
@@ -87,10 +87,8 @@ sandbox () {
       rm -rf kapacitor/data influxdb/data chronograf/data
       ;;
     docker-clean)
-      echo "Stopping all running containers..."
-      docker stop $(docker ps -a -q) > /dev/null 2>&1
-      echo "Removing all containers..."
-      docker rm $(docker ps -a -q) > /dev/null 2>&1
+      echo "Stopping and removing running sandbox containers..."
+      docker-compose down
       echo "Removing TICK images..."
       docker rmi sandbox_documentation influxdb:1.4.2 telegraf:1.4.5 kapacitor:1.3.3 chronograf:1.3.10.0 > /dev/null 2>&1
       ;;
