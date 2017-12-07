@@ -1,9 +1,8 @@
 version: '2'
 services:
   chronograf:
-    # Currently our Chronograf images are hosted on quay.
-    # Full tag list: https://quay.io/repository/influxdb/chronograf?tab=tags
-    image: quay.io/influxdb/chronograf:1.3.9.0
+    # Full tag list: https://hub.docker.com/r/library/chronograf/tags/
+    image: chronograf:1.3.10.0
     volumes:
       # Mount for chronograf database
       - ./chronograf/data/:/var/lib/chronograf/
@@ -20,7 +19,7 @@ services:
       - telegraf
   telegraf:
     # Full tag list: https://hub.docker.com/r/library/telegraf/tags/
-    image: telegraf:1.4.4
+    image: telegraf:1.4.5
     environment:
       HOSTNAME: "telegraf-getting-started"
     # Telegraf requires network access to InfluxDB
@@ -35,7 +34,7 @@ services:
       - influxdb
   influxdb:
     # Full tag list: https://hub.docker.com/r/library/influxdb/tags/
-    image: influxdb:1.3.7
+    image: influxdb:1.4.2
     volumes:
       # Mount for influxdb data directory
       - ./influxdb/data:/var/lib/influxdb

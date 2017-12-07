@@ -92,7 +92,7 @@ sandbox () {
       echo "Removing all containers..."
       docker rm $(docker ps -a -q) > /dev/null 2>&1
       echo "Removing TICK images..."
-      docker rmi sandbox_documentation influxdb:1.2.2 telegraf:1.2.1 kapacitor:1.2.0 quay.io/influxdb/chronograf:1.2.0-beta7 > /dev/null 2>&1
+      docker rmi sandbox_documentation influxdb:1.4.2 telegraf:1.4.5 kapacitor:1.3.3 chronograf:1.3.10.0 > /dev/null 2>&1
       ;;
     influxdb)
       echo "Entering the influx cli..."
