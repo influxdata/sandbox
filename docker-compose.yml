@@ -2,7 +2,7 @@ version: '2'
 services:
   chronograf:
     # Full tag list: https://hub.docker.com/r/library/chronograf/tags/
-    image: chronograf:1.4.0.0
+    image: quay.io/influxdb/chronograf:1.4.0.0
     volumes:
       # Mount for chronograf database
       - ./chronograf/data/:/var/lib/chronograf/
