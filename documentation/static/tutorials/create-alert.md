@@ -43,7 +43,7 @@ In the `Values` section you need to `Send Alert where queryReq is Greater Than 1
 
 ![Alert Threshold](/images/alert-threshold.png)
 
-Finally you need to set the message you want to send with the alert: `Alert {{ .ID }} is {{ .Level }} -> {{ index .Fields "value" }}`. Clicking `Save Rule` at the top of the page [defines and enables](https://docs.influxdata.com/kapacitor/v1.4/working/api/#tasks) the rule. 
+Finally you need to set the message you want to send with the alert: `Alert {{ .ID }} is {{ .Level }} -> {{ index .Fields "value" }}`. Clicking `Save Rule` at the top of the page [defines and enables](https://docs.influxdata.com/chronograf/v1.4/guides/create-a-kapacitor-alert/#step-6-save-the-alert-rule) the rule. 
 
 ### Trigger it! See some alerts!
 
