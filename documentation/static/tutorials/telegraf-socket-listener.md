@@ -1,6 +1,6 @@
 # Using the Telegraf socket_listener Plugin
 
-The Telegraf [socket_listener](https://github.com/influxdata/telegraf/tree/master/plugins/inputs/socket_listener) plugin allows you to send arbitrary measurements to Telegraf using UDP or TCP. It is often the fastest way to get your metrics into InfluxDB, as it will parse various [inputs](https://docs.influxdata.com/telegraf/v1.4/concepts/data_formats_input/) and take care of things like automatic retries for you.
+The Telegraf [socket_listener](https://github.com/influxdata/telegraf/tree/master/plugins/inputs/socket_listener) plugin allows you to send arbitrary measurements to Telegraf using UDP or TCP. It is often the fastest way to get your metrics into InfluxDB, as it will parse various [inputs](https://docs.influxdata.com/telegraf/v1.5/concepts/data_formats_input/) and take care of things like automatic retries for you.
 
 In order to use the Telegraf socket_listener Plugin with the TICK Sandbox, we will need to expose a port for the Telegraf container to receive data. We can do that by adding a `ports` section under `telegraf` in `./docker-compose.yml`.
 
@@ -9,7 +9,7 @@ It should look like this:
 ```
 telegraf:
     # Full tag list: https://hub.docker.com/r/library/telegraf/tags/
-    image: telegraf:1.4.5
+    image: telegraf:1.5.2
     environment:
         HOSTNAME: "telegraf-getting-started"
     # Telegraf requires network access to InfluxDB
@@ -45,7 +45,7 @@ Services available!
 $ 
 ```
 
-Now let's test that Telegraf can receive data via UDP. We'll send a metric using the InfluxDB [Line Protocol](https://docs.influxdata.com/influxdb/v1.3/write_protocols/line_protocol_tutorial/), which Telegraf understands. To send the data, we'll use two common command line utilities, `echo` and `nc`, or netcat.
+Now let's test that Telegraf can receive data via UDP. We'll send a metric using the InfluxDB [Line Protocol](https://docs.influxdata.com/influxdb/v1.4/write_protocols/line_protocol_tutorial/), which Telegraf understands. To send the data, we'll use two common command line utilities, `echo` and `nc`, or netcat.
 
 Both of these utilites are included on macOS and most Linux distributions; if you're using Windows, you can [install Ubuntu from the Windows Store](https://www.microsoft.com/store/productId/9NBLGGH4MSV6) and use these tools from within the Windows Subsystem for Linux (WSL).
 
