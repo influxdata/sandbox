@@ -1,6 +1,6 @@
 # Enabling Authentication
 
-First you will need to create an [admin user](https://docs.influxdata.com/influxdb/v1.2/query_language/authentication_and_authorization/#authorization) on your influxdb instance:
+First you will need to create an [admin user](https://docs.influxdata.com/influxdb/v1.4/query_language/authentication_and_authorization/#authorization) on your influxdb instance:
 
 ```
 $ ./sandbox influxdb
@@ -12,7 +12,7 @@ user    admin
 stanley true
 ```
 
-Then change the [`[http] auth-enabled` variable](https://docs.influxdata.com/influxdb/v1.2/query_language/authentication_and_authorization/#set-up-authentication) in the configuration file at `./influxdb/config/influxdb.conf` to true. Then you will need to add this username and password to both the telegraf and kapacitor configuration files:
+Then change the [`[http] auth-enabled` variable](https://docs.influxdata.com/influxdb/v1.4/query_language/authentication_and_authorization/#set-up-authentication) in the configuration file at `./influxdb/config/influxdb.conf` to true. Then you will need to add this username and password to both the telegraf and kapacitor configuration files:
 
 ```
 # ./influxdb/config/influxdb.conf
