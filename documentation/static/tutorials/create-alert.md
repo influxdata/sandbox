@@ -22,7 +22,7 @@ At the top of the page, click the pencil to rename the alert to `Queries/Second`
 
 ![Rename alert](/images/rename-alert.png)
 
-Make the following choices in the `Select a Time Series` section. We are using the [`spread`](https://docs.influxdata.com/influxdb/v1.2/query_language/functions/#spread) function:
+Make the following choices in the `Select a Time Series` section. We are using the [`spread`](https://docs.influxdata.com/influxdb/v1.4/query_language/functions/#spread) function:
 
 ```
 database:    'telegraf'
@@ -43,7 +43,7 @@ In the `Values` section you need to `Send Alert where queryReq is Greater Than 1
 
 ![Alert Threshold](/images/alert-threshold.png)
 
-Finally you need to set the message you want to send with the alert: `Alert {{ .ID }} is {{ .Level }} -> {{ index .Fields "value" }}`. Clicking `Save Rule` at the top of the page [defines and enables](https://docs.influxdata.com/kapacitor/v1.2//api/api/#define-task) the rule. 
+Finally you need to set the message you want to send with the alert: `Alert {{ .ID }} is {{ .Level }} -> {{ index .Fields "value" }}`. Clicking `Save Rule` at the top of the page [defines and enables](https://docs.influxdata.com/kapacitor/v1.4/working/api/#tasks) the rule. 
 
 ### Trigger it! See some alerts!
 
