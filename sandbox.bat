@@ -68,7 +68,7 @@ IF "%1"=="up" (
     docker-compose up -d
     ECHO Opening tabs in browser...
     timeout /t 3 /nobreak > NUL
-    START "" http://localhost:3000
+    START "" http://localhost:3010
     START "" http://localhost:8888
     GOTO End
 )
