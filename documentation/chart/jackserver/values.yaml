@@ -25,7 +25,7 @@ resources:
 ## service controls the application ports
 ##
 service:
-  containerPort: 3000
+  containerPort: 3010
   servicePort: 80
   
 ## ingress controls the ingress resource settings
