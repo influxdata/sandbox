@@ -21,7 +21,7 @@ var (
 func init() {
 	gopath := os.Getenv("GOPATH")
 	files := fmt.Sprintf("%v/src/github.com/jackzampolin/sandbox/documentation/", gopath)
-	port = flag.String("port", ":3000", "specify port to run server")
+	port = flag.String("port", ":3010", "specify port to run server")
 	filePath = flag.String("filePath", files, "path where assets live")
 	flag.Parse()
 }
