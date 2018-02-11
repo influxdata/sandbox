@@ -1,6 +1,6 @@
 FROM alpine:3.4
 
-EXPOSE 3000:3000
+EXPOSE 3010:3010
 
 RUN mkdir -p /documentation
 
