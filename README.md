@@ -27,7 +27,7 @@ sandbox commands:
 To get started just run `./sandbox up`. You browser will open two tabs:
 
 - `localhost:8888` - Chronograf's address. You will use this as a management UI for the full stack
-- `localhost:3000` - Documentation server. This contains a simple markdown server for tutorials and documentation.
+- `localhost:3010` - Documentation server. This contains a simple markdown server for tutorials and documentation.
 
 > NOTE: Make sure to stop any existing installations of `influxdb`, `kapacitor` or `chronograf`. If you have them running the sandbox will run into port conflicts and fail to properly start. In this case stop the existing processes and run `./sandbox restart`.
 
@@ -49,7 +49,7 @@ Finally, enter `http://kapacitor:9092` as the URL and click `Connect Kapacitor`:
 
 Then you are ready to get started with the TICK Stack!
 
-Visit `http:localhost:8888` and click the host to see your dashboard, then check out the tutorials at `http://localhost:3000/tutorials`.
+Visit `http:localhost:8888` and click the host to see your dashboard, then check out the tutorials at `http://localhost:3010/tutorials`.
 
 >Note: see [influx-stress](https://github.com/influxdata/influx-stress) to create data for your sandbox. 
 >
