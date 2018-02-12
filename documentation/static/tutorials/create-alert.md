@@ -5,8 +5,8 @@ Chronograf makes creating alerts in Kapacitor quick and easy! For our first aler
 ### Configure Slack integration
 
 First open the Kapacitor configuration section in Chronograf, by selecting the gear within the left-hand navigation panel.
-The select the drop list on the data source where the Kapacitor instance resides, you can click the "pencil" icon to 
-edit the Kapacitor configuration options:
+Then, select the drop list on the data source under the Active Kapacitor description. From within the drop list you can 
+click the "pencil" icon to access the Kapacitor configuration options:
 
 ![Kapacitor Configuration](/images/kapacitor-config.png)
 
