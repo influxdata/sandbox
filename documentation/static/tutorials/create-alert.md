@@ -38,9 +38,11 @@ function:    'spread'
 groupByTime: '10s'
 groupByTags: 'host'
 ```
+Once completed, the screen shown should look as follows:
 
-Once completed, the query shown should look as follows:
+![Time series](/images/alert-time-series.png)
 
+The InfluxQL query generated looks like this:
 ```sql
 SELECT spread("queryReq") AS "spread_queryReq" FROM "telegraf"."autogen"."influxdb_httpd" WHERE time > now() - 15m GROUP BY host, time(10s)
 ```
