@@ -16,7 +16,7 @@ Then select the Slack tab and add the webhook URL and Slack channel to post to:
 
 ### Use the rule builder
 
-Navigate to the Rule Builder and click on the `Create Rule` button:
+Navigate to the Rule Builder and click on the `Build Rule` button:
 
 ![Kapacitor Alerts](/images/kapacitor-rules.png)
 
