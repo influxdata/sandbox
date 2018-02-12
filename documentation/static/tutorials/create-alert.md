@@ -50,7 +50,7 @@ WHERE time > now() - 15m
 GROUP BY host, time(10s)
 ```
 
-In the `Values` section you need to `Send Alert where queryReq is Greater Than 10`. You should see a visual representation of the alert below that:
+In the `Conditions` section you need to `Send Alert where queryReq is Greater Than 10`. You should see a visual representation of the alert below that:
 
 ![Alert Threshold](/images/alert-threshold.png)
 
