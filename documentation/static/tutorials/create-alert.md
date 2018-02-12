@@ -28,7 +28,7 @@ Next, select the alert type.  In this example, select the default value `thresho
 
 ![Alert type](/images/alert-type.png)
 
-Make the following choices in the `Select a Time Series` section. We are using the [`spread`](https://docs.influxdata.com/influxdb/v1.4/query_language/functions/#spread) function:
+Make the following choices in the `Time Series` section. We are using the [`spread`](https://docs.influxdata.com/influxdb/v1.4/query_language/functions/#spread) function:
 
 ```
 database:    'telegraf'
