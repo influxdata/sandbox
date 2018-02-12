@@ -44,7 +44,10 @@ Once completed, the screen shown should look as follows:
 
 The InfluxQL query generated looks like this:
 ```sql
-SELECT spread("queryReq") AS "spread_queryReq" FROM "telegraf"."autogen"."influxdb_httpd" WHERE time > now() - 15m GROUP BY host, time(10s)
+SELECT spread("queryReq") AS "spread_queryReq" 
+FROM "telegraf"."autogen"."influxdb_httpd" 
+WHERE time > now() - 15m 
+GROUP BY host, time(10s)
 ```
 
 In the `Values` section you need to `Send Alert where queryReq is Greater Than 10`. You should see a visual representation of the alert below that:
