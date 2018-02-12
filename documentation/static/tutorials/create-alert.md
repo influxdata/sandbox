@@ -4,7 +4,7 @@ Chronograf makes creating alerts in Kapacitor quick and easy! For our first aler
 
 ### Configure Slack integration
 
-First open the Kapacitor configuration section in Chronograf, by selecting the gear within the left-hand navigation panel.
+First open the Kapacitor configuration section in Chronograf, by selecting the Configuration option ("gear" icon) within the left-hand navigation panel.
 Then, select the drop list on the data source under the Active Kapacitor description. From within the drop list you can 
 click the "pencil" icon to access the Kapacitor configuration options:
 
@@ -16,13 +16,17 @@ Then select the Slack tab and add the webhook URL and Slack channel to post to:
 
 ### Use the rule builder
 
-Navigate to the Rule Builder and click on the `Build Rule` button:
+Navigate to the Rule Builder by selecting `Create` from the Alert option ("warning" icon) within the left-hand navigation panel. Next, click on the `Build Rule` button in the upper right portion of the page:
 
 ![Kapacitor Alerts](/images/kapacitor-rules.png)
 
-At the top of the page, click the pencil to rename the alert to `Queries/Second`:
+The first step in building a rule is to give it a name.  Let's name this one: `Queries/Second`
 
 ![Rename alert](/images/rename-alert.png)
+
+Next, select the alert type.  In this example, select the default value `threshold` is what we will use.
+
+![Alert type](/images/alert-type.png)
 
 Make the following choices in the `Select a Time Series` section. We are using the [`spread`](https://docs.influxdata.com/influxdb/v1.4/query_language/functions/#spread) function:
 
