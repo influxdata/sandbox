@@ -9,7 +9,7 @@ IF %ERRORLEVEL% == 0 SET interactive=0
 REM Enter attaches users to a shell in the desired container
 IF "%1"=="enter" (
     IF "%2"=="" (
-        ECHO sandbox enter ^(influxdb^|^|chronograf^|^|kapacitor^|^|telegraf^)
+        ECHO sandbox enter ^(influxdb^|^|chronograf^|^|kapacitor^|^|telegraf^|^|ifql^)
         GOTO End
     )
     IF "%2"=="influxdb" (
@@ -30,6 +30,11 @@ IF "%1"=="enter" (
     IF "%2"=="telegraf" (
         ECHO Entering ^/bin^/bash session in the telegraf container...
         docker-compose exec telegraf /bin/bash
+        GOTO End
+    )
+    IF "%2"=="ifql" (
+        ECHO Entering ^/bin^/bash session in the ifql container...
+        docker-compose exec ifqld /bin/bash
         GOTO End
     )
 )
@@ -58,6 +63,11 @@ IF "%1"=="logs" (
     IF "%2"=="telegraf" (
         ECHO Following the logs from the telegraf container...
         docker-compose logs -f telegraf
+        GOTO End
+    )
+    IF "%2"=="ifql" (
+        ECHO Following the logs from the ifql container...
+        docker-compose logs -f ifqld
         GOTO End
     )
 )
@@ -98,7 +108,7 @@ IF "%1"=="docker-clean" (
     ECHO Stopping all running sandbox containers...
     docker-compose down
     echo Removing TICK images...
-    docker rmi sandbox_documentation influxdb:1.4.2 telegraf:1.4.5 kapacitor:1.3.3 chronograf:1.3.10.0 >NUL 2>NUL
+    docker rmi sandbox_documentation influxdb:1.4.3 telegraf:1.5.2 kapacitor:1.4.0 chronograf:1.4.0.1 >NUL 2>NUL
     GOTO End
 )
 
@@ -123,8 +133,8 @@ ECHO   down         -^> tear down the sandbox environment
 ECHO   restart      -^> restart the sandbox
 ECHO   influxdb     -^> attach to the influx cli
 ECHO.  
-ECHO   enter ^(influxdb^|^|kapacitor^|^|chronograf^|^|telegraf^) -^> enter the specified container
-ECHO   logs  ^(influxdb^|^|kapacitor^|^|chronograf^|^|telegraf^) -^> stream logs for the specified container
+ECHO   enter ^(influxdb^|^|kapacitor^|^|chronograf^|^|telegraf^|^|ifql^) -^> enter the specified container
+ECHO   logs  ^(influxdb^|^|kapacitor^|^|chronograf^|^|telegraf^|^|ifql^) -^> stream logs for the specified container
 ECHO.  
 ECHO   delete-data  -^> delete all data created by the TICK Stack 
 ECHO   docker-clean -^> stop and remove all running docker containers and images
