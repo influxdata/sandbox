@@ -25,7 +25,7 @@ sandbox () {
         ;;
       ifql)
         echo "Entering /bin/bash session in the ifql container..."
-        docker-compose exec ifql /bin/bash
+        docker-compose exec ifql /bin/sh
         ;;
       *)
         echo "sandbox enter (influxdb||chronograf||kapacitor||telegraf||ifql)"
