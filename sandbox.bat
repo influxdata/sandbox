@@ -34,7 +34,7 @@ IF "%1"=="enter" (
     )
     IF "%2"=="ifql" (
         ECHO Entering ^/bin^/bash session in the ifql container...
-        docker-compose exec ifqld /bin/bash
+        docker-compose exec ifql /bin/sh
         GOTO End
     )
 )
@@ -67,7 +67,7 @@ IF "%1"=="logs" (
     )
     IF "%2"=="ifql" (
         ECHO Following the logs from the ifql container...
-        docker-compose logs -f ifqld
+        docker-compose logs -f ifql
         GOTO End
     )
 )
@@ -108,7 +108,7 @@ IF "%1"=="docker-clean" (
     ECHO Stopping all running sandbox containers...
     docker-compose down
     echo Removing TICK images...
-    docker rmi sandbox_documentation influxdb:1.4.3 telegraf:1.5.2 kapacitor:1.4.0 chronograf:1.4.0.1 >NUL 2>NUL
+    docker rmi sandbox_documentation influxdb:1.4.3 telegraf:1.5.2 kapacitor:1.4.0 chronograf:1.4.0.1 ifql:v0.0.5 >NUL 2>NUL
     GOTO End
 )
 
