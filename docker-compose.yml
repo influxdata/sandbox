@@ -39,6 +39,7 @@ services:
     ports:
       # The API for IFQLD is served on port 8093
       - "8093:8093"
+    command: ["sleep", "10", "&&", "/ifql"]
     links:
       - influxdb
     depends_on:
