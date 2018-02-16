@@ -1,22 +1,17 @@
 version: '3'
 services:
-  chronograf:
-    # Full tag list: https://hub.docker.com/r/library/chronograf/tags/
-    image: quay.io/influxdb/chronograf:1.4.0.1
+ influxdb:
+    # Full tag list: https://hub.docker.com/r/library/influxdb/tags/
+    image: influxdb:1.4.3
     volumes:
-      # Mount for chronograf database
-      - ./chronograf/data/:/var/lib/chronograf/
-    links:
-      # Chronograf requires network access to InfluxDB and Kapacitor
-      - influxdb
-      - kapacitor
+      # Mount for influxdb data directory
+      - ./influxdb/data:/var/lib/influxdb
+      # Mount for influxdb configuration
+      - ./influxdb/config/:/etc/influxdb/
     ports:
-      # The WebUI for Chronograf is served on port 8888
-      - "8888:8888"
-    depends_on:
-      - kapacitor
-      - influxdb
-      - telegraf
+      # The API for InfluxDB is served on port 8086
+      - "8086:8086"
+      - "8082:8082"
   telegraf:
     # Full tag list: https://hub.docker.com/r/library/telegraf/tags/
     image: telegraf:1.5.2
@@ -32,30 +27,6 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
       - influxdb
-  ifql:
-    image: quay.io/influxdb/ifqld:v0.0.5
-    environment:
-      - "HOSTS=influxdb:8082"
-    ports:
-      # The API for IFQLD is served on port 8093
-      - "8093:8093"
-    command: ["sleep", "10", "&&", "/ifql"]
-    links:
-      - influxdb
-    depends_on:
-      - influxdb
-  influxdb:
-    # Full tag list: https://hub.docker.com/r/library/influxdb/tags/
-    image: influxdb:1.4.3
-    volumes:
-      # Mount for influxdb data directory
-      - ./influxdb/data:/var/lib/influxdb
-      # Mount for influxdb configuration
-      - ./influxdb/config/:/etc/influxdb/
-    ports:
-      # The API for InfluxDB is served on port 8086
-      - "8086:8086"
-      - "8082:8082"
   kapacitor:
     # Full tag list: https://hub.docker.com/r/library/kapacitor/tags/
     image: kapacitor:1.4.0
@@ -70,8 +41,37 @@ services:
     ports:
       # The API for Kapacitor is served on port 9092
       - "9092:9092"
+  chronograf:
+    # Full tag list: https://hub.docker.com/r/library/chronograf/tags/
+    image: quay.io/influxdb/chronograf:1.4.1.3
+    volumes:
+      # Mount for chronograf database
+      - ./chronograf/data/:/var/lib/chronograf/
+    links:
+      # Chronograf requires network access to InfluxDB and Kapacitor
+      - influxdb
+      - kapacitor
+    ports:
+      # The WebUI for Chronograf is served on port 8888
+      - "8888:8888"
+    depends_on:
+      - kapacitor
+      - influxdb
+      - telegraf
   documentation:
     build:
       context: ./documentation
     ports: 
       - "3010:3000"
+  ifql:
+    image: quay.io/influxdb/ifqld:v0.0.5
+    environment:
+      - "HOSTS=influxdb:8082"
+    ports:
+      # The API for IFQLD is served on port 8093
+      - "8093:8093"
+    command: ["sleep", "20", "&&", "/ifql"]
+    links:
+      - influxdb
+    depends_on:
+      - influxdb
