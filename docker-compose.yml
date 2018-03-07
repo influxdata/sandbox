@@ -34,7 +34,7 @@ services:
       - influxdb
   influxdb:
     # Full tag list: https://hub.docker.com/r/library/influxdb/tags/
-    image: influxdb:1.4.3
+    image: influxdb:1.5.0
     volumes:
       # Mount for influxdb data directory
       - ./influxdb/data:/var/lib/influxdb
