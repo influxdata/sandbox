@@ -43,6 +43,8 @@ services:
     ports:
       # The API for InfluxDB is served on port 8086
       - "8086:8086"
+      # Exposed UDP port for data collection
+      - "8089:8089"
   kapacitor:
     # Full tag list: https://hub.docker.com/r/library/kapacitor/tags/
     image: kapacitor:1.4.0
