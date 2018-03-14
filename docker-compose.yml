@@ -47,7 +47,7 @@ services:
       - "8089:8089"
   kapacitor:
     # Full tag list: https://hub.docker.com/r/library/kapacitor/tags/
-    image: kapacitor:1.4.0
+    image: kapacitor:1.4.1
     volumes:
       # Mount for kapacitor data directory
       - ./kapacitor/data/:/var/lib/kapacitor
