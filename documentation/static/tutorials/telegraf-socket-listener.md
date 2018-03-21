@@ -9,7 +9,7 @@ It should look like this:
 ```
 telegraf:
     # Full tag list: https://hub.docker.com/r/library/telegraf/tags/
-    image: telegraf:1.5.2
+    image: telegraf:1.5.3
     environment:
         HOSTNAME: "telegraf-getting-started"
     # Telegraf requires network access to InfluxDB
@@ -45,7 +45,7 @@ Services available!
 $ 
 ```
 
-Now let's test that Telegraf can receive data via UDP. We'll send a metric using the InfluxDB [Line Protocol](https://docs.influxdata.com/influxdb/v1.4/write_protocols/line_protocol_tutorial/), which Telegraf understands. To send the data, we'll use two common command line utilities, `echo` and `nc`, or netcat.
+Now let's test that Telegraf can receive data via UDP. We'll send a metric using the InfluxDB [Line Protocol](https://docs.influxdata.com/influxdb/v1.5/write_protocols/line_protocol_tutorial/), which Telegraf understands. To send the data, we'll use two common command line utilities, `echo` and `nc`, or netcat.
 
 Both of these utilites are included on macOS and most Linux distributions; if you're using Windows, you can [install Ubuntu from the Windows Store](https://www.microsoft.com/store/productId/9NBLGGH4MSV6) and use these tools from within the Windows Subsystem for Linux (WSL).
 
