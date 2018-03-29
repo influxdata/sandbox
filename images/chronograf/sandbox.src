@@ -3,7 +3,7 @@
   "name": "My InfluxDB",
   "username": "",
   "password": "",
-  "url": "http://influxdb:8086",
+  "url": "{{ .INFLUXDB_URL }}",
   "type": "influx",
   "insecureSkipVerify": false,
   "default": true,
