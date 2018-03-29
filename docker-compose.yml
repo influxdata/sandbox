@@ -55,6 +55,7 @@ services:
     image: chrono_config
     environment:
       RESOURCES_PATH: "/usr/share/chronograf/canned"
+      INFLUXDB_URL: "http://influxdb:8086"
     volumes:
       # Mount for chronograf database
       - ./chronograf/data/:/var/lib/chronograf/
