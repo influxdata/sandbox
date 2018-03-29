@@ -2,7 +2,7 @@ version: '3'
 services:
   influxdb:
     # Full tag list: https://hub.docker.com/r/library/influxdb/tags/
-    image: influxdb:1.5.0
+    image: influxdb:1.5.1
     volumes:
       # Mount for influxdb data directory
       - ./influxdb/data:/var/lib/influxdb
@@ -45,7 +45,7 @@ services:
       - "9092:9092"
   chronograf:
     # Full tag list: https://hub.docker.com/r/library/chronograf/tags/
-    image: quay.io/influxdb/chronograf:1.4.2.3
+    image: quay.io/influxdb/chronograf:1.4.3.0
     volumes:
       # Mount for chronograf database
       - ./chronograf/data/:/var/lib/chronograf/
@@ -66,7 +66,7 @@ services:
     ports: 
       - "3010:3000"
   ifql:
-    image: quay.io/influxdb/ifqld:v0.0.5
+    image: quay.io/influxdb/ifqld:v0.0.6
     environment:
       - "HOSTS=influxdb:8082"
     ports:
