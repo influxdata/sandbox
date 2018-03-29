@@ -66,7 +66,7 @@ sandbox () {
     up)
       echo "Spinning up Docker Images..."
       echo "If this is your first time starting sandbox this might take a minute..."
-      docker-compose up -d
+      docker-compose up -d --build
       echo "Opening tabs in browser..."
       sleep 3
       if [ $(uname) == "Darwin" ]; then
@@ -87,7 +87,7 @@ sandbox () {
       echo "Stopping all sandbox processes..."
       docker-compose down > /dev/null 2>&1
       echo "Starting all sandbox processes..."
-      docker-compose up -d > /dev/null 2>&1
+      docker-compose up -d --build > /dev/null 2>&1
       echo "Services available!"
       ;;
     delete-data)
@@ -109,7 +109,7 @@ sandbox () {
       docker build -t sandbox_documentation documentation/ > /dev/null 2>&1
       echo "Restarting..."
       docker-compose down > /dev/null 2>&1
-      docker-compose up -d > /dev/null 2>&1
+      docker-compose up -d --build > /dev/null 2>&1
       ;;
     enter)
       enter $@

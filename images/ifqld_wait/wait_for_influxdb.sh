@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 # wait_for_influxdb.sh
 
 set -e
@@ -9,3 +9,4 @@ until wget http://influxdb:8086/ping; do
 done
 
 echo "InfluxDB is up - Starting IFQL"
+exec ./ifqld

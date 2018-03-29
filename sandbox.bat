@@ -75,7 +75,7 @@ IF "%1"=="logs" (
 IF "%1"=="up" (
     ECHO Spinning up Docker Images...
     ECHO If this is your first time starting sandbox this might take a minute...
-    docker-compose up -d
+    docker-compose up -d --build
     ECHO Opening tabs in browser...
     timeout /t 3 /nobreak > NUL
     START "" http://localhost:3010
@@ -93,7 +93,7 @@ IF "%1"=="restart" (
     ECHO Stopping all sandbox processes...
     docker-compose down >NUL 2>NUL
     ECHO Starting all sandbox processes...
-    docker-compose up -d >NUL 2>NUL
+    docker-compose up -d --build >NUL 2>NUL
     ECHO Services available!
     GOTO End
 )
@@ -123,7 +123,7 @@ IF "%1"=="rebuild-docs" (
     docker build -t sandbox_documentation documentation\  >NUL 2>NUL
     echo "Restarting..."
     docker-compose down >NUL 2>NUL
-    docker-compose up -d  >NUL 2>NUL
+    docker-compose up -d --build >NUL 2>NUL
     GOTO End
 )
 
