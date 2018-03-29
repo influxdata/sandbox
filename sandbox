@@ -23,8 +23,12 @@ sandbox () {
         echo "Entering /bin/bash session in the telegraf container..."
         docker-compose exec telegraf /bin/bash
         ;;
+      ifql)
+        echo "Entering /bin/bash session in the ifql container..."
+        docker-compose exec ifql /bin/sh
+        ;;
       *)
-        echo "sandbox enter (influxdb||chronograf||kapacitor||telegraf)"
+        echo "sandbox enter (influxdb||chronograf||kapacitor||telegraf||ifql)"
         ;;
     esac
   }
@@ -48,8 +52,12 @@ sandbox () {
         echo "Following the logs from the telegraf container..."
         docker-compose logs -f telegraf
         ;;
+      ifql)
+        echo "Following the logs from the ifql container..."
+        docker-compose logs -f ifql
+        ;;
       *)
-        echo "sandbox logs (influxdb||chronograf||kapacitor||telegraf)"
+        echo "sandbox logs (influxdb||chronograf||kapacitor||telegraf||ifql)"
         ;;
     esac
   }
@@ -58,7 +66,7 @@ sandbox () {
     up)
       echo "Spinning up Docker Images..."
       echo "If this is your first time starting sandbox this might take a minute..."
-      docker-compose up -d
+      docker-compose up -d --build
       echo "Opening tabs in browser..."
       sleep 3
       if [ $(uname) == "Darwin" ]; then
@@ -79,7 +87,7 @@ sandbox () {
       echo "Stopping all sandbox processes..."
       docker-compose down > /dev/null 2>&1
       echo "Starting all sandbox processes..."
-      docker-compose up -d > /dev/null 2>&1
+      docker-compose up -d --build > /dev/null 2>&1
       echo "Services available!"
       ;;
     delete-data)
@@ -90,7 +98,7 @@ sandbox () {
       echo "Stopping and removing running sandbox containers..."
       docker-compose down
       echo "Removing TICK images..."
-      docker rmi sandbox_documentation influxdb:1.4.3 telegraf:1.5.2 kapacitor:1.4.0 chronograf:1.4.0.1 > /dev/null 2>&1
+      docker rmi sandbox_documentation influxdb:1.4.3 telegraf:1.5.2 kapacitor:1.4.0 chronograf:1.4.0.1 ifqld:v0.0.5> /dev/null 2>&1
       ;;
     influxdb)
       echo "Entering the influx cli..."
@@ -101,7 +109,7 @@ sandbox () {
       docker build -t sandbox_documentation documentation/ > /dev/null 2>&1
       echo "Restarting..."
       docker-compose down > /dev/null 2>&1
-      docker-compose up -d > /dev/null 2>&1
+      docker-compose up -d --build > /dev/null 2>&1
       ;;
     enter)
       enter $@
@@ -117,8 +125,8 @@ sandbox commands:
   restart      -> restart the sandbox
   influxdb     -> attach to the influx cli
   
-  enter (influxdb||kapacitor||chronograf||telegraf) -> enter the specified container
-  logs  (influxdb||kapacitor||chronograf||telegraf) -> stream logs for the specified container
+  enter (influxdb||kapacitor||chronograf||telegraf||ifql) -> enter the specified container
+  logs  (influxdb||kapacitor||chronograf||telegraf||ifql) -> stream logs for the specified container
   
   delete-data  -> delete all data created by the TICK Stack 
   docker-clean -> stop and remove all running docker containers and images

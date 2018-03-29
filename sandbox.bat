@@ -9,7 +9,7 @@ IF %ERRORLEVEL% == 0 SET interactive=0
 REM Enter attaches users to a shell in the desired container
 IF "%1"=="enter" (
     IF "%2"=="" (
-        ECHO sandbox enter ^(influxdb^|^|chronograf^|^|kapacitor^|^|telegraf^)
+        ECHO sandbox enter ^(influxdb^|^|chronograf^|^|kapacitor^|^|telegraf^|^|ifql^)
         GOTO End
     )
     IF "%2"=="influxdb" (
@@ -30,6 +30,11 @@ IF "%1"=="enter" (
     IF "%2"=="telegraf" (
         ECHO Entering ^/bin^/bash session in the telegraf container...
         docker-compose exec telegraf /bin/bash
+        GOTO End
+    )
+    IF "%2"=="ifql" (
+        ECHO Entering ^/bin^/bash session in the ifql container...
+        docker-compose exec ifql /bin/sh
         GOTO End
     )
 )
@@ -60,12 +65,17 @@ IF "%1"=="logs" (
         docker-compose logs -f telegraf
         GOTO End
     )
+    IF "%2"=="ifql" (
+        ECHO Following the logs from the ifql container...
+        docker-compose logs -f ifql
+        GOTO End
+    )
 )
 
 IF "%1"=="up" (
     ECHO Spinning up Docker Images...
     ECHO If this is your first time starting sandbox this might take a minute...
-    docker-compose up -d
+    docker-compose up -d --build
     ECHO Opening tabs in browser...
     timeout /t 3 /nobreak > NUL
     START "" http://localhost:3010
@@ -83,7 +93,7 @@ IF "%1"=="restart" (
     ECHO Stopping all sandbox processes...
     docker-compose down >NUL 2>NUL
     ECHO Starting all sandbox processes...
-    docker-compose up -d >NUL 2>NUL
+    docker-compose up -d --build >NUL 2>NUL
     ECHO Services available!
     GOTO End
 )
@@ -98,7 +108,7 @@ IF "%1"=="docker-clean" (
     ECHO Stopping all running sandbox containers...
     docker-compose down
     echo Removing TICK images...
-    docker rmi sandbox_documentation influxdb:1.4.2 telegraf:1.4.5 kapacitor:1.3.3 chronograf:1.3.10.0 >NUL 2>NUL
+    docker rmi sandbox_documentation influxdb:1.4.3 telegraf:1.5.2 kapacitor:1.4.0 chronograf:1.4.0.1 ifql:v0.0.5 >NUL 2>NUL
     GOTO End
 )
 
@@ -113,7 +123,7 @@ IF "%1"=="rebuild-docs" (
     docker build -t sandbox_documentation documentation\  >NUL 2>NUL
     echo "Restarting..."
     docker-compose down >NUL 2>NUL
-    docker-compose up -d  >NUL 2>NUL
+    docker-compose up -d --build >NUL 2>NUL
     GOTO End
 )
 
@@ -123,8 +133,8 @@ ECHO   down         -^> tear down the sandbox environment
 ECHO   restart      -^> restart the sandbox
 ECHO   influxdb     -^> attach to the influx cli
 ECHO.  
-ECHO   enter ^(influxdb^|^|kapacitor^|^|chronograf^|^|telegraf^) -^> enter the specified container
-ECHO   logs  ^(influxdb^|^|kapacitor^|^|chronograf^|^|telegraf^) -^> stream logs for the specified container
+ECHO   enter ^(influxdb^|^|kapacitor^|^|chronograf^|^|telegraf^|^|ifql^) -^> enter the specified container
+ECHO   logs  ^(influxdb^|^|kapacitor^|^|chronograf^|^|telegraf^|^|ifql^) -^> stream logs for the specified container
 ECHO.  
 ECHO   delete-data  -^> delete all data created by the TICK Stack 
 ECHO   docker-clean -^> stop and remove all running docker containers and images
