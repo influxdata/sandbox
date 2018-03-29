@@ -1,5 +1,5 @@
 {
-  "id": 10000,
+  "id": "10000",
   "name": "My InfluxDB",
   "username": "",
   "password": "",
