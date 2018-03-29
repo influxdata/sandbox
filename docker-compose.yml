@@ -1,5 +1,6 @@
 version: '3'
 services:
+
   influxdb:
     # Full tag list: https://hub.docker.com/r/library/influxdb/tags/
     image: influxdb:latest
@@ -12,8 +13,9 @@ services:
       # The API for InfluxDB is served on port 8086
       - "8086:8086"
       - "8082:8082"
-      # UDDP Port
+      # UDP Port
       - "8089:8089"
+      
   telegraf:
     # Full tag list: https://hub.docker.com/r/library/telegraf/tags/
     image: telegraf:latest
@@ -29,6 +31,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
       - influxdb
+
   kapacitor:
     # Full tag list: https://hub.docker.com/r/library/kapacitor/tags/
     image: kapacitor:latest
@@ -43,6 +46,7 @@ services:
     ports:
       # The API for Kapacitor is served on port 9092
       - "9092:9092"
+      
   chronograf:
     # Full tag list: https://hub.docker.com/r/library/chronograf/tags/
     image: quay.io/influxdb/chronograf:latest
@@ -65,6 +69,7 @@ services:
       context: ./documentation
     ports: 
       - "3010:3000"
+      
   ifql:
     build:
       context: ./images/ifqld_wait/
