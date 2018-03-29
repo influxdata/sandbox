@@ -66,13 +66,14 @@ services:
     ports: 
       - "3010:3000"
   ifql:
-    image: quay.io/influxdb/ifqld:v0.0.6
+    build: /images/ifqld_wait/Dockerfile
+    image: ifqld_wait
     environment:
       - "HOSTS=influxdb:8082"
     ports:
       # The API for IFQLD is served on port 8093
       - "8093:8093"
-    command: ["sleep", "30", "&&", "/ifql"]
+    command: ["./wait_for_influxdb.sh"]
     links:
       - influxdb
     depends_on:
