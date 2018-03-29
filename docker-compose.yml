@@ -53,6 +53,8 @@ services:
       context: ./images/chronograf/
       dockerfile: ./Dockerfile
     image: chrono_config
+    environment:
+      RESOURCES_PATH: "/usr/share/chronograf/canned"
     volumes:
       # Mount for chronograf database
       - ./chronograf/data/:/var/lib/chronograf/
