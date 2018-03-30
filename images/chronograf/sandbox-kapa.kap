@@ -1,6 +1,6 @@
 {
-  "id": 10001,
-  "srcID": 10000,
+  "id": "10001",
+  "srcID": "10000",
   "name": "My Kapacitor",
   "url": "http://influxdb:9092",
   "active": true,
