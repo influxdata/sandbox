@@ -1,0 +1,8 @@
+{
+  "id": "10001",
+  "srcID": "10000",
+  "name": "My Kapacitor",
+  "url": "http://kapacitor:9092",
+  "active": true,
+  "organization": "sandbox_org"
+}
