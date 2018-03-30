@@ -45,8 +45,7 @@ Finally, enter `http://kapacitor:9092` as the URL and click `Connect`:
 
 Then you are ready to get started with the TICK Stack!
 
-Visit `http://localhost:8888` and click the Host icon in the left navigation bar to see your host 
-(named `telegraf-getting-started`) and its overall status. 
+Click the Host icon in the left navigation bar to see your host  (named `telegraf-getting-started`) and its overall status. 
 ![Host List](./documentation/static/images/host-list.png)
 
 You can click on `system` hyperlink to see a pre-built dashboard visualizing the basic system stats for your 
