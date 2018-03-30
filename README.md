@@ -55,4 +55,4 @@ host, then check out the tutorials at `http://localhost:3010/tutorials`.
 >Note: see [influx-stress](https://github.com/influxdata/influx-stress) to create data for your sandbox. 
 >
 
-![Dashboard](./documentation/static/images/sandbox_dashboard.jpg)
+![Dashboard](./documentation/static/images/sandbox-dashboard.jpg)
