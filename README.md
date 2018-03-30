@@ -31,11 +31,7 @@ To get started just run `./sandbox up`. You browser will open two tabs:
 
 > NOTE: Make sure to stop any existing installations of `influxdb`, `kapacitor` or `chronograf`. If you have them running the sandbox will run into port conflicts and fail to properly start. In this case stop the existing processes and run `./sandbox restart`.
 
-To configure the connection to InfluxDB from Chronograf just fill in `http://influxdb:8086` as the URL:
-
-![Configure Influx](./documentation/static/images/configure-influxdb.png)
-
-Once you have configured the InfluxDB URL you should see your dashboard:
+Once the Sandbox launches, you should see your dashboard appear in your browser:
 
 ![Dashboard](./documentation/static/images/dashboard.png)
 
