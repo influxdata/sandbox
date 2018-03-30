@@ -39,7 +39,7 @@ Then click on the gear icon and select `Kapacitor`:
 
 ![Kapacitor Configuration](./documentation/static/images/kapacitor-config.png)
 
-Finally, enter `http://kapacitor:9092` as the URL and click `Connect Kapacitor`:
+Finally, enter `http://kapacitor:9092` as the URL and click `Add Kapacitor Connection`:
 
 ![Kapacitor Configuration](./documentation/static/images/configure-kapacitor.png)
 
