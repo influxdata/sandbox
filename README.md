@@ -35,15 +35,7 @@ Once the Sandbox launches, you should see your dashboard appear in your browser:
 
 ![Dashboard](./documentation/static/images/landing-page.png)
 
-Then click on the gear icon and select `Add Kapacitor Connection`:
-
-![Kapacitor Configuration](./documentation/static/images/kapacitor-config.png)
-
-Finally, enter `http://kapacitor:9092` as the URL and click `Connect`:
-
-![Kapacitor Configuration](./documentation/static/images/configure-kapacitor.png)
-
-Then you are ready to get started with the TICK Stack!
+You are ready to get started with the TICK Stack!
 
 Click the Host icon in the left navigation bar to see your host  (named `telegraf-getting-started`) and its overall status. 
 ![Host List](./documentation/static/images/host-list.png)
