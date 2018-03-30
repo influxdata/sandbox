@@ -1,6 +1,6 @@
 # Understanding the Sandbox
 
-The InfluxData sandbox runs a complete InfluxData setup and provides a convenient way to learn to use all of the products in concert through the Chronograf management user interface. It also contains a learning portal with links to relevant pages. The sandbox is built with [Docker](https://www.docker.com/). 
+The InfluxData sandbox runs a complete InfluxData setup and provides a convenient way to learn to use all of the products in concert through the Chronograf management user interface. It also contains a learning portal with links to relevant pages. The sandbox is built with [Docker](https://www.docker.com/).
 
 ### Configuration changes
 
@@ -15,7 +15,7 @@ $ ./sandbox restart
 
 ### Data
 
-After initial startup you will see the data directories for `influxdb`, `chronograf` and `kapacitor` created. This is where the data for `sandbox` is persisted. 
+After initial startup you will see the data directories for `influxdb`, `chronograf` and `kapacitor` created. This is where the data for `sandbox` is persisted.
 
 ```bash
 .
@@ -33,7 +33,7 @@ After initial startup you will see the data directories for `influxdb`, `chronog
 
 ### InfluxDB
 
-In the `sandbox` InfluxDB is collecting data that is created by `telegraf`, forwarding it to `kapacitor` for alerting, and serving dashboard queries from `chronograf`. The API is available at `http://locahost:8086`
+In the `sandbox` InfluxDB is collecting data that is created by `telegraf`, forwarding it to `kapacitor` for alerting, and serving dashboard queries from `chronograf`. The API is available at `http://localhost:8086`
 
 If you have an existing installation of InfluxDB on your computer, you can use the `influx` cli tool to run commands against the `sandbox` instances without additional configuration. If you do not have the tools then use the sandbox to attach to the cli:
 
