@@ -35,11 +35,11 @@ Once the Sandbox launches, you should see your dashboard appear in your browser:
 
 ![Dashboard](./documentation/static/images/landing-page.png)
 
-Then click on the gear icon and select `Kapacitor`:
+Then click on the gear icon and select `Add Kapacitor Connection`:
 
 ![Kapacitor Configuration](./documentation/static/images/kapacitor-config.png)
 
-Finally, enter `http://kapacitor:9092` as the URL and click `Add Kapacitor Connection`:
+Finally, enter `http://kapacitor:9092` as the URL and click `Connect`:
 
 ![Kapacitor Configuration](./documentation/static/images/configure-kapacitor.png)
 
