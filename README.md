@@ -33,7 +33,7 @@ To get started just run `./sandbox up`. You browser will open two tabs:
 
 Once the Sandbox launches, you should see your dashboard appear in your browser:
 
-![Dashboard](./documentation/static/images/dashboard.png)
+![Dashboard](./documentation/static/images/landing-page.png)
 
 Then click on the gear icon and select `Kapacitor`:
 
