@@ -92,7 +92,7 @@ sandbox () {
       ;;
     delete-data)
       echo "deleting all influxdb, kapacitor and chronograf data..."
-      rm -rf kapacitor/data influxdb/data chronograf/data
+      rm -rf ~/.sandbox
       ;;
     docker-clean)
       echo "Stopping and removing running sandbox containers..."
