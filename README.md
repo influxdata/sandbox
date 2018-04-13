@@ -16,8 +16,8 @@ sandbox commands:
   restart      -> restart the sandbox
   influxdb     -> attach to the influx cli
   
-  enter (influxdb||kapacitor||chronograf||telegraf) -> enter the specified container
-  logs  (influxdb||kapacitor||chronograf||telegraf) -> stream logs for the specified container
+  enter (influxdb||kapacitor||chronograf||telegraf||ifql) -> enter the specified container
+  logs  (influxdb||kapacitor||chronograf||telegraf||ifql) -> stream logs for the specified container
   
   delete-data  -> delete all data created by the TICK Stack
   docker-clean -> stop and remove all running docker containers
@@ -29,7 +29,8 @@ To get started just run `./sandbox up`. You browser will open two tabs:
 - `localhost:8888` - Chronograf's address. You will use this as a management UI for the full stack
 - `localhost:3010` - Documentation server. This contains a simple markdown server for tutorials and documentation.
 
-> NOTE: Make sure to stop any existing installations of `influxdb`, `kapacitor` or `chronograf`. If you have them running the sandbox will run into port conflicts and fail to properly start. In this case stop the existing processes and run `./sandbox restart`.
+> NOTE: Make sure to stop any existing installations of `influxdb`, `kapacitor` or `chronograf`. If you have them running the sandbox will run into port conflicts and fail to properly start. In this case stop the existing processes and run `./sandbox restart`. Also make sure you are **not** using _Docker Toolbox_.
+
 
 Once the Sandbox launches, you should see your dashboard appear in your browser:
 
