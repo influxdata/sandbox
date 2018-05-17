@@ -98,7 +98,7 @@ sandbox () {
       echo "Stopping and removing running sandbox containers..."
       docker-compose down
       echo "Removing TICK images..."
-      docker rmi sandbox_documentation influxdb:latest telegraf:latest kapacitor:latest chronograf:latest ifqld:latest ifqld_wait:latest quay.io/influxdb/ifqld:latest chrono_config:latest quay.io/influxdb/chronograf:latest > /dev/null 2>&1
+      docker rmi sandbox_documentation influxdb:latest telegraf:latest kapacitor:latest chronograf:latest ifqld:latest ifqld_wait:latest quay.io/influxdb/ifqld:latest chrono_config:latest chronograf:latest > /dev/null 2>&1
       ;;
     influxdb)
       echo "Entering the influx cli..."
