@@ -2,6 +2,7 @@
 TITLE sandbox.bat - TICK Sandbox
 
 SET interactive=1
+SET COMPOSE_CONVERT_WINDOWS_PATHS=1
 
 ECHO %cmdcmdline% | FIND /i "/c"
 IF %ERRORLEVEL% == 0 SET interactive=0
@@ -132,11 +133,11 @@ ECHO   up           -^> spin up the sandbox environment
 ECHO   down         -^> tear down the sandbox environment
 ECHO   restart      -^> restart the sandbox
 ECHO   influxdb     -^> attach to the influx cli
-ECHO.  
+ECHO.
 ECHO   enter ^(influxdb^|^|kapacitor^|^|chronograf^|^|telegraf^|^|ifql^) -^> enter the specified container
 ECHO   logs  ^(influxdb^|^|kapacitor^|^|chronograf^|^|telegraf^|^|ifql^) -^> stream logs for the specified container
-ECHO.  
-ECHO   delete-data  -^> delete all data created by the TICK Stack 
+ECHO.
+ECHO   delete-data  -^> delete all data created by the TICK Stack
 ECHO   docker-clean -^> stop and remove all running docker containers and images
 ECHO   rebuild-docs -^> rebuild the documentation image
 
