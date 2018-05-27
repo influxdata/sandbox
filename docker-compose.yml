@@ -49,7 +49,7 @@ services:
   chronograf:
     # Full tag list: https://hub.docker.com/r/library/chronograf/tags/
     build:
-      context: ./images/chronograf/:./images/chronograf/${TYPE}
+      context: ./images/chronograf
       dockerfile: ./${TYPE}/Dockerfile
       args:
         CHRONOGRAF_TAG: ${CHRONOGRAF_TAG}
