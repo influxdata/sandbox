@@ -46,7 +46,7 @@ services:
       # The API for Kapacitor is served on port 9092
       - "9092:9092"
 
-   chronograf:
+  chronograf:
     # Full tag list: https://hub.docker.com/r/library/chronograf/tags/
     build:
       context: ./images/chronograf/
@@ -68,7 +68,7 @@ services:
       - kapacitor
       - influxdb
       - telegraf
-      
+
   documentation:
     build:
       context: ./documentation
