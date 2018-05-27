@@ -50,9 +50,9 @@ services:
     # Full tag list: https://hub.docker.com/r/library/chronograf/tags/
     build:
       context: ./images/chronograf/
-      dockerfile: ./Dockerfile
+      dockerfile: ./${TYPE}/Dockerfile
       args:
-        chronograf_tag: ${CHRONOGRAF_TAG}
+        CHRONOGRAF_TAG: ${CHRONOGRAF_TAG}
     image: chrono_config
     environment:
       RESOURCES_PATH: "/usr/share/chronograf/resources"
