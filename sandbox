@@ -67,10 +67,10 @@ sandbox () {
       echo "Spinning up Docker Images..."
       echo "If this is your first time starting sandbox this might take a minute..."
       if [ "$2" == "" ]; then
-        cp .env-latest .env
+        source .env-latest
         echo "Building from latest, stable releases"
       else
-        cp .env-nightlies .env
+        source .env-nightlies
         echo "Building from nightlies"
       fi
       docker-compose up -d --build
