@@ -53,6 +53,7 @@ services:
       dockerfile: ./Dockerfile
     image: chrono_config
     environment:
+      "CHRONOGRAF_TAG: ${CHRONOGRAF_TAG}"
       RESOURCES_PATH: "/usr/share/chronograf/resources"
     volumes:
       # Mount for chronograf database
