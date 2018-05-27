@@ -2,7 +2,7 @@ version: '3'
 services:
   influxdb:
     # Full tag list: https://hub.docker.com/r/library/influxdb/tags/
-    image: "${INFLUXDB_TAG}"
+    image: "influxdb${INFLUXDB_TAG}"
     volumes:
       # Mount for influxdb data directory
       - ./influxdb/data:/var/lib/influxdb
@@ -17,7 +17,7 @@ services:
 
   telegraf:
     # Full tag list: https://hub.docker.com/r/library/telegraf/tags/
-    image: "${TELEGRAF_TAG}"
+    image: "telegraf:${TELEGRAF_TAG}"
     environment:
       HOSTNAME: "telegraf-getting-started"
     # Telegraf requires network access to InfluxDB
@@ -33,7 +33,7 @@ services:
 
   kapacitor:
     # Full tag list: https://hub.docker.com/r/library/kapacitor/tags/
-    image: "${KAPACITOR_TAG}"
+    image: "kapacitor:${KAPACITOR_TAG}"
     volumes:
       # Mount for kapacitor data directory
       - ./kapacitor/data/:/var/lib/kapacitor
