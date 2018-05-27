@@ -2,7 +2,7 @@ version: '3'
 services:
   influxdb:
     # Full tag list: https://hub.docker.com/r/library/influxdb/tags/
-    image: influxdb:latest
+    image: "influxdb:${INFLUXDB_TAG}"
     volumes:
       # Mount for influxdb data directory
       - ./influxdb/data:/var/lib/influxdb
@@ -17,7 +17,7 @@ services:
 
   telegraf:
     # Full tag list: https://hub.docker.com/r/library/telegraf/tags/
-    image: telegraf:latest
+    image: "telegraf:${TELEGRAF_TAG}"
     environment:
       HOSTNAME: "telegraf-getting-started"
     # Telegraf requires network access to InfluxDB
@@ -33,7 +33,7 @@ services:
 
   kapacitor:
     # Full tag list: https://hub.docker.com/r/library/kapacitor/tags/
-    image: kapacitor:latest
+    image: "kapacitor:${KAPACITOR_TAG}"
     volumes:
       # Mount for kapacitor data directory
       - ./kapacitor/data/:/var/lib/kapacitor
@@ -45,8 +45,7 @@ services:
     ports:
       # The API for Kapacitor is served on port 9092
       - "9092:9092"
-
-  chronograf:
+   chronograf:
     # Full tag list: https://hub.docker.com/r/library/chronograf/tags/
     build:
       context: ./images/chronograf/
