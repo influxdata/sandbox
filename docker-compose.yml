@@ -2,7 +2,7 @@ version: '3'
 services:
   influxdb:
     # Full tag list: https://hub.docker.com/r/library/influxdb/tags/
-    image: "influxdb${INFLUXDB_TAG}"
+    image: "influxdb:${INFLUXDB_TAG}"
     volumes:
       # Mount for influxdb data directory
       - ./influxdb/data:/var/lib/influxdb
