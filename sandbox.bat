@@ -2,6 +2,7 @@
 TITLE sandbox.bat - TICK Sandbox
 
 SET interactive=1
+set COMPOSE_CONVERT_WINDOWS_PATHS=1
 
 ECHO %cmdcmdline% | FIND /i "/c"
 IF %ERRORLEVEL% == 0 SET interactive=0
