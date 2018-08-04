@@ -8,5 +8,5 @@ until wget http://influxdb:8086/ping; do
   sleep 5
 done
 
-echo "InfluxDB is up - Starting IFQL"
-exec ./ifqld
+echo "InfluxDB is up - Starting Flux"
+exec ./fluxd
