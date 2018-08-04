@@ -35,6 +35,13 @@ sandbox () {
 
   # Logs streams the logs from the container to the shell
   logs () {
+      if [ "$3" == "" ]; then
+        source .env-latest
+        echo "Using latest, stable releases"
+      else
+        source .env-nightlies
+        echo "Using nightlies"
+      fi
     case $2 in
       influxdb)
         echo "Following the logs from the influxdb container..."
@@ -160,8 +167,8 @@ sandbox commands:
   restart          -> restart the sandbox
   influxdb         -> attach to the influx cli
 
-  enter (influxdb||kapacitor||chronograf||telegraf||flux) -> enter the specified container
-  logs  (influxdb||kapacitor||chronograf||telegraf||flux) -> stream logs for the specified container
+  enter (influxdb||kapacitor||chronograf||telegraf||flux) -> enter the specified container -- add nightlies
+  logs  (influxdb||kapacitor||chronograf||telegraf||flux) -> stream logs for the specified container -- add nightlies
 
   delete-data  -> delete all data created by the TICK Stack
   docker-clean -> stop and remove all running docker containers and images
