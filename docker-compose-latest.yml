@@ -52,7 +52,7 @@ services:
       context: ./images/chronograf
       dockerfile: ./${TYPE}/Dockerfile
       args:
-        CHRONOGRAF_TAG: ${CHRONOGRAF_TAG}
+        CHRONOGRAF_TAG:${CHRONOGRAF_TAG}
     image: chrono_config
     environment:
       RESOURCES_PATH: "/usr/share/chronograf/resources"
@@ -77,15 +77,15 @@ services:
     ports:
       - "3010:3000"
 
-  ifql:
+  flux:
     build:
-      context: ./images/ifqld_wait/
+      context: ./images/flux_wait/
       dockerfile: ./Dockerfile
-    image: ifqld_wait
+    image: flux_wait
     environment:
       - "HOSTS=influxdb:8082"
     ports:
-      # The API for IFQLD is served on port 8093
+      # The API for Flux is served on port 8093
       - "8093:8093"
     links:
       - influxdb
