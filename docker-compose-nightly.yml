@@ -1,0 +1,94 @@
+version: '1'
+services:
+  influxdb:
+    # Full tag list: https://quay.io/repository/influxdb/influxdb
+    image: "quay.io/influxdb/influxdb:${INFLUXDB_TAG}"
+    volumes:
+      # Mount for influxdb data directory
+      - ./influxdb/data:/var/lib/influxdb
+      # Mount for influxdb configuration
+      - ./influxdb/config/:/etc/influxdb/
+    ports:
+      # The API for InfluxDB is served on port 8086
+      - "8086:8086"
+      - "8082:8082"
+      # UDP Port
+      - "8089:8089"
+
+  telegraf:
+    # Full tag list: https://quay.io/repository/influxdb/telegraf?tab=tags
+    image: "quay.io/influxdb/telegraf:${TELEGRAF_TAG}"
+    environment:
+      HOSTNAME: "telegraf-getting-started"
+    # Telegraf requires network access to InfluxDB
+    links:
+      - influxdb
+    volumes:
+      # Mount for telegraf configuration
+      - ./telegraf/:/etc/telegraf/
+      # Mount for Docker API access
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - influxdb
+
+  kapacitor:
+    # Full tag list: https://quay.io/repository/influxdb/kapacitor?tab=tags
+    image: "quay.io/influxdb/kapacitor:${KAPACITOR_TAG}"
+    volumes:
+      # Mount for kapacitor data directory
+      - ./kapacitor/data/:/var/lib/kapacitor
+      # Mount for kapacitor configuration
+      - ./kapacitor/config/:/etc/kapacitor/
+    # Kapacitor requires network access to Influxdb
+    links:
+      - influxdb
+    ports:
+      # The API for Kapacitor is served on port 9092
+      - "9092:9092"
+
+  chronograf:
+    # Full tag list: https://quay.io/repository/influxdb/chronograf?tab=tags
+    build:
+      context: ./images/chronograf
+      dockerfile: ./${TYPE}/Dockerfile
+      args:
+        CHRONOGRAF_TAG:${CHRONOGRAF_TAG}
+    image: chrono_config
+    environment:
+      RESOURCES_PATH: "/usr/share/chronograf/resources"
+    volumes:
+      # Mount for chronograf database
+      - ./chronograf/data/:/var/lib/chronograf/
+    links:
+      # Chronograf requires network access to InfluxDB and Kapacitor
+      - influxdb
+      - kapacitor
+    ports:
+      # The WebUI for Chronograf is served on port 8888
+      - "8888:8888"
+    depends_on:
+      - kapacitor
+      - influxdb
+      - telegraf
+
+  documentation:
+    build:
+      context: ./documentation
+    ports:
+      - "3010:3000"
+
+  flux:
+    # Full tag list: https://quay.io/repository/influxdb/flux?tab=tags
+    build:
+      context: ./images/flux_wait/
+      dockerfile: ./Dockerfile
+    image: flux_wait
+    environment:
+      - "HOSTS=influxdb:8082"
+    ports:
+      # The API for Flux is served on port 8093
+      - "8093:8093"
+    links:
+      - influxdb
+    depends_on:
+      - influxdb
