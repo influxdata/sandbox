@@ -88,10 +88,24 @@ sandbox () {
       ;;
     down)
       echo "Stopping sandbox containers..."
+      if [ "$2" == "" ]; then
+        source .env-latest
+        echo "Building from latest, stable releases"
+      else
+        source .env-nightlies
+        echo "Building from nightlies"
+      fi
       docker-compose down
       ;;
     restart)
       echo "Stopping all sandbox processes..."
+      if [ "$2" == "" ]; then
+        source .env-latest
+        echo "Building from latest, stable releases"
+      else
+        source .env-nightlies
+        echo "Building from nightlies"
+      fi
       docker-compose down > /dev/null 2>&1
       echo "Starting all sandbox processes..."
       docker-compose up -d --build > /dev/null 2>&1
@@ -103,12 +117,26 @@ sandbox () {
       ;;
     docker-clean)
       echo "Stopping and removing running sandbox containers..."
+      if [ "$2" == "" ]; then
+        source .env-latest
+        echo "Building from latest, stable releases"
+      else
+        source .env-nightlies
+        echo "Building from nightlies"
+      fi
       docker-compose down
       echo "Removing TICK images..."
       docker rmi sandbox_documentation influxdb:latest telegraf:latest kapacitor:latest chronograf:latest flux:latest flux_wait:latest quay.io/influxdb/flux:latest chrono_config:latest chronograf:latest quay.io/influxdb/influxdb:nightly quay.io/influxdb/kapacitor:latest> /dev/null 2>&1
       ;;
     influxdb)
       echo "Entering the influx cli..."
+      if [ "$2" == "" ]; then
+        source .env-latest
+        echo "Building from latest, stable releases"
+      else
+        source .env-nightlies
+        echo "Building from nightlies"
+      fi
       docker-compose exec influxdb /usr/bin/influx
       ;;
     rebuild-docs)
@@ -127,10 +155,10 @@ sandbox () {
     *)
       cat <<-EOF
 sandbox commands:
-  up (nightlies) -> spin up the sandbox environment (latest or nightlies specified in the companion file)
-  down           -> tear down the sandbox environment
-  restart        -> restart the sandbox
-  influxdb       -> attach to the influx cli
+  up (nightlies)   -> spin up the sandbox environment (latest or nightlies specified in the companion file)
+  down (nightlies) -> tear down the sandbox environment (latest or nightlies specified in the companion file)
+  restart          -> restart the sandbox
+  influxdb         -> attach to the influx cli
 
   enter (influxdb||kapacitor||chronograf||telegraf||flux) -> enter the specified container
   logs  (influxdb||kapacitor||chronograf||telegraf||flux) -> stream logs for the specified container
