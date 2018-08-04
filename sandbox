@@ -53,7 +53,7 @@ sandbox () {
         docker-compose logs -f telegraf
         ;;
       flux)
-        echo "Following the logs from the ifql container..."
+        echo "Following the logs from the flux container..."
         docker-compose logs -f flux
         ;;
       *)
@@ -105,7 +105,7 @@ sandbox () {
       echo "Stopping and removing running sandbox containers..."
       docker-compose down
       echo "Removing TICK images..."
-      docker rmi sandbox_documentation influxdb:latest telegraf:latest kapacitor:latest chronograf:latest flux:latest flux_wait:latest quay.io/influxdb/flux:latest chrono_config:latest chronograf:latest > /dev/null 2>&1
+      docker rmi sandbox_documentation influxdb:latest telegraf:latest kapacitor:latest chronograf:latest flux:latest flux_wait:latest quay.io/influxdb/flux:latest chrono_config:latest chronograf:latest quay.io/influxdb/influxdb:nightly quay.io/influxdb/kapacitor:latest> /dev/null 2>&1
       ;;
     influxdb)
       echo "Entering the influx cli..."
