@@ -1,4 +1,4 @@
-version: '4'
+version: '3'
 services:
   influxdb:
     # Full tag list: https://hub.docker.com/r/library/influxdb/tags/
