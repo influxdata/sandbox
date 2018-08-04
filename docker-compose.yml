@@ -2,7 +2,12 @@ version: '4'
 services:
   influxdb:
     # Full tag list: https://hub.docker.com/r/library/influxdb/tags/
-    image: "influxdb:${INFLUXDB_TAG}"
+    build:
+      context: ./images/influxdb/
+      dockerfile: ./${TYPE}/Dockerfile
+      args:
+        INFLUXDB_TAG:${INFLUXDB_TAG}
+    image: "influxdb"
     volumes:
       # Mount for influxdb data directory
       - ./influxdb/data:/var/lib/influxdb
@@ -17,7 +22,12 @@ services:
 
   telegraf:
     # Full tag list: https://hub.docker.com/r/library/telegraf/tags/
-    image: "telegraf:${TELEGRAF_TAG}"
+    build:
+      context: ./images/telegraf/
+      dockerfile: ./${TYPE}/Dockerfile
+      args:
+        TELEGRAF_TAG:${TELEGRAF_TAG}
+    image: "telegraf"
     environment:
       HOSTNAME: "telegraf-getting-started"
     # Telegraf requires network access to InfluxDB
@@ -32,8 +42,13 @@ services:
       - influxdb
 
   kapacitor:
-    # Full tag list: https://hub.docker.com/r/library/kapacitor/tags/
-    image: "kapacitor:${KAPACITOR_TAG}"
+  # Full tag list: https://hub.docker.com/r/library/kapacitor/tags/
+    build:
+      context: ./images/kapacitor/
+      dockerfile: ./${TYPE}/Dockerfile
+      args:
+        KAPACITOR_TAG:${KAPACITOR_TAG}
+    image: "kapacitor"
     volumes:
       # Mount for kapacitor data directory
       - ./kapacitor/data/:/var/lib/kapacitor
@@ -80,7 +95,7 @@ services:
   flux:
     build:
       context: ./images/flux_wait/
-      dockerfile: ./Dockerfile
+      dockerfile: ./${TYPE}/Dockerfile
     image: flux_wait
     environment:
       - "HOSTS=influxdb:8082"
