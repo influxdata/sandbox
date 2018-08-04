@@ -1,5 +1,5 @@
-ARG IFQL_TAG
-FROM quay.io/influxdb/ifqld:$IFQL_TAG
+ARG FLUX_TAG
+FROM quay.io/influxdb/fluxd:$FLUX_TAG
 ADD ./wait_for_influxdb.sh ./
 
 ENTRYPOINT ["./wait_for_influxdb.sh"]
