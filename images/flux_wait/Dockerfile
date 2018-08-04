@@ -1,5 +1,2 @@
 ARG FLUX_TAG
-FROM quay.io/influxdb/fluxd:$FLUX_TAG
-ADD ./wait_for_influxdb.sh ./
-
-ENTRYPOINT ["./wait_for_influxdb.sh"]
+FROM quay.io/influxdb/flux:$FLUX_TAG
