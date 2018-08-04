@@ -6,7 +6,7 @@ services:
       context: ./images/influxdb/
       dockerfile: ./${TYPE}/Dockerfile
       args:
-        INFLUXDB_TAG:${INFLUXDB_TAG}
+        INFLUXDB_TAG: ${INFLUXDB_TAG}
     image: "influxdb"
     volumes:
       # Mount for influxdb data directory
@@ -26,7 +26,7 @@ services:
       context: ./images/telegraf/
       dockerfile: ./${TYPE}/Dockerfile
       args:
-        TELEGRAF_TAG:${TELEGRAF_TAG}
+        TELEGRAF_TAG: ${TELEGRAF_TAG}
     image: "telegraf"
     environment:
       HOSTNAME: "telegraf-getting-started"
@@ -47,7 +47,7 @@ services:
       context: ./images/kapacitor/
       dockerfile: ./${TYPE}/Dockerfile
       args:
-        KAPACITOR_TAG:${KAPACITOR_TAG}
+        KAPACITOR_TAG: ${KAPACITOR_TAG}
     image: "kapacitor"
     volumes:
       # Mount for kapacitor data directory
@@ -67,7 +67,7 @@ services:
       context: ./images/chronograf
       dockerfile: ./${TYPE}/Dockerfile
       args:
-        CHRONOGRAF_TAG:${CHRONOGRAF_TAG}
+        CHRONOGRAF_TAG: ${CHRONOGRAF_TAG}
     image: chrono_config
     environment:
       RESOURCES_PATH: "/usr/share/chronograf/resources"
@@ -96,6 +96,8 @@ services:
     build:
       context: ./images/flux_wait/
       dockerfile: ./${TYPE}/Dockerfile
+      args:
+        FLUX_TAG: ${FLUX_TAG}
     image: flux_wait
     environment:
       - "HOSTS=influxdb:8082"
