@@ -24,7 +24,7 @@ sandbox () {
         docker-compose exec telegraf /bin/bash
         ;;
       flux)
-        echo "Entering /bin/bash session in the ifql container..."
+        echo "Entering /bin/bash session in the flux container..."
         docker-compose exec flux /bin/sh
         ;;
       *)
