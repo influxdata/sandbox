@@ -102,7 +102,7 @@ services:
         FLUX_TAG: ${FLUX_TAG}
     image: flux
     environment:
-      - "HOST=influxdb:8082"
+      - "STORAGE_HOSTS=influxdb:8082"
     ports:
       # The API for Flux is served on port 8093
       - "8093:8093"
