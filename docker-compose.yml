@@ -78,6 +78,7 @@ services:
       # Chronograf requires network access to InfluxDB and Kapacitor
       - influxdb
       - kapacitor
+      - flux
     ports:
       # The WebUI for Chronograf is served on port 8888
       - "8888:8888"
