@@ -99,7 +99,7 @@ services:
       dockerfile: ./${TYPE}/Dockerfile
       args:
         FLUX_TAG: ${FLUX_TAG}
-    image: flux_wait
+    image: flux
     environment:
       - "HOST=influxdb:8082"
     ports:
