@@ -1,5 +1,3 @@
-# escape=`
-
 ARG FLUX_TAG
 FROM quay.io/influxdb/flux:$FLUX_TAG
-ENTRYPOINT ["./entrypoint.sh","--storage-hosts ","influxdb:8082"]
+ENTRYPOINT ["./entrypoint.sh","--verbose"]
