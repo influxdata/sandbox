@@ -5,10 +5,10 @@ IFS=$'\n\t'
 sandbox () {
       if [ "$2" == "-nightly" ]; then
         source .env-nightlies
-        echo "Building from nightlies"
+        echo "Using nightlies"
       else
         source .env-latest
-        echo "Building from latest, stable releases"
+        echo "Using latest, stable releases"
       fi
   # Enter attaches users to a shell in the desired container
   enter () {
