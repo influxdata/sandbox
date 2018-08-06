@@ -3,7 +3,13 @@ set -eo pipefail
 IFS=$'\n\t'
 
 sandbox () {
-
+      if [ "$2" == "-nightly" ]; then
+        source .env-nightlies
+        echo "Building from nightlies"
+      else
+        source .env-latest
+        echo "Building from latest, stable releases"
+      fi
   # Enter attaches users to a shell in the desired container
   enter () {
     case $2 in
@@ -35,13 +41,6 @@ sandbox () {
 
   # Logs streams the logs from the container to the shell
   logs () {
-      if [ "$3" == "" ]; then
-        source .env-latest
-        echo "Using latest, stable releases"
-      else
-        source .env-nightlies
-        echo "Using nightlies"
-      fi
     case $2 in
       influxdb)
         echo "Following the logs from the influxdb container..."
@@ -73,13 +72,6 @@ sandbox () {
     up)
       echo "Spinning up Docker Images..."
       echo "If this is your first time starting sandbox this might take a minute..."
-      if [ "$2" == "" ]; then
-        source .env-latest
-        echo "Building from latest, stable releases"
-      else
-        source .env-nightlies
-        echo "Building from nightlies"
-      fi
       docker-compose up -d --build
       echo "Opening tabs in browser..."
       sleep 3
@@ -95,24 +87,10 @@ sandbox () {
       ;;
     down)
       echo "Stopping sandbox containers..."
-      if [ "$2" == "" ]; then
-        source .env-latest
-        echo "Building from latest, stable releases"
-      else
-        source .env-nightlies
-        echo "Building from nightlies"
-      fi
       docker-compose down
       ;;
     restart)
       echo "Stopping all sandbox processes..."
-      if [ "$2" == "" ]; then
-        source .env-latest
-        echo "Building from latest, stable releases"
-      else
-        source .env-nightlies
-        echo "Building from nightlies"
-      fi
       docker-compose down > /dev/null 2>&1
       echo "Starting all sandbox processes..."
       docker-compose up -d --build > /dev/null 2>&1
@@ -124,26 +102,12 @@ sandbox () {
       ;;
     docker-clean)
       echo "Stopping and removing running sandbox containers..."
-      if [ "$2" == "" ]; then
-        source .env-latest
-        echo "Building from latest, stable releases"
-      else
-        source .env-nightlies
-        echo "Building from nightlies"
-      fi
       docker-compose down
       echo "Removing TICK images..."
       docker rmi sandbox_documentation influxdb:latest telegraf:latest kapacitor:latest chronograf:latest flux:latest flux_wait:latest quay.io/influxdb/flux:latest chrono_config:latest chronograf:latest quay.io/influxdb/influxdb:nightly quay.io/influxdb/kapacitor:latest quay.io/influxdb/flux:nightly quay.io/influxdb/flux:latest chrono_config:latest chronograf:latest quay.io/influxdb/influxdb:nightly quay.io/influxdb/kapacitor:latest quay.io/influxdb/chronograf:nightly> /dev/null 2>&1
       ;;
     influxdb)
       echo "Entering the influx cli..."
-      if [ "$2" == "" ]; then
-        source .env-latest
-        echo "Building from latest, stable releases"
-      else
-        source .env-nightlies
-        echo "Building from nightlies"
-      fi
       docker-compose exec influxdb /usr/bin/influx
       ;;
     rebuild-docs)
@@ -162,13 +126,13 @@ sandbox () {
     *)
       cat <<-EOF
 sandbox commands:
-  up (nightlies)   -> spin up the sandbox environment (latest or nightlies specified in the companion file)
-  down (nightlies) -> tear down the sandbox environment (latest or nightlies specified in the companion file)
-  restart          -> restart the sandbox
-  influxdb         -> attach to the influx cli
+  up (-nightly)      -> spin up the sandbox environment (latest or nightlies specified in the companion file)
+  down               -> tear down the sandbox environment (latest or nightlies specified in the companion file)
+  restart (-nightly) -> restart the sandbox
+  influxdb           -> attach to the influx cli
 
-  enter (influxdb||kapacitor||chronograf||telegraf||flux) -> enter the specified container -- add nightlies
-  logs  (influxdb||kapacitor||chronograf||telegraf||flux) -> stream logs for the specified container -- add nightlies
+  enter (influxdb||kapacitor||chronograf||telegraf||flux) -> enter the specified container
+  logs  (influxdb||kapacitor||chronograf||telegraf||flux) -> stream logs for the specified container
 
   delete-data  -> delete all data created by the TICK Stack
   docker-clean -> stop and remove all running docker containers and images
