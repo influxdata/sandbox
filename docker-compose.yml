@@ -68,7 +68,7 @@ services:
       dockerfile: ./${TYPE}/Dockerfile
       args:
         CHRONOGRAF_TAG: ${CHRONOGRAF_TAG}
-    image: chrono_config
+    image: "chrono_config"
     environment:
       RESOURCES_PATH: "/usr/share/chronograf/resources"
     volumes:
@@ -100,7 +100,7 @@ services:
       dockerfile: ./${TYPE}/Dockerfile
       args:
         FLUX_TAG: ${FLUX_TAG}
-    image: flux
+    image: "flux"
     environment:
       - "HOSTS=influxdb:8082"
     ports:
