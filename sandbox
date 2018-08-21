@@ -6,7 +6,6 @@ sandbox () {
       if [ "$2" == "-nightly" ]; then
         source .env-nightlies
         echo "Using nightlies"
-        ;;
       else
         source .env-latest
         echo "Using latest, stable releases"
