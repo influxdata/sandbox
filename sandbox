@@ -6,8 +6,6 @@ sandbox () {
       if [ "$2" == "-nightly" ]; then
         source .env-nightlies
         echo "Using nightlies"
-        docker rmi quay.io/influxdb/influxdb:nightly quay.io/influxdb/flux:nightly> /dev/null
-        docker rmi $(docker images -f "dangling=true" -q)
         ;;
       else
         source .env-latest
