@@ -5,7 +5,8 @@ IFS=$'\n\t'
 sandbox () {
       if [ "$2" == "-nightly" ]; then
         source .env-nightlies
-        echo "Using nightlies"
+        echo "Using nightlies...removing old ones."
+        docker rmi $(docker images | grep nightly | tr -s ' ' | cut -d ' ' -f 3)
       else
         source .env-latest
         echo "Using latest, stable releases"
