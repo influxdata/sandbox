@@ -5,8 +5,14 @@ IFS=$'\n\t'
 sandbox () {
       if [ "$2" == "-nightly" ]; then
         source .env-nightlies
-        echo "Using nightlies...removing old ones."
-        docker rmi $(docker images | grep nightly | tr -s ' ' | cut -d ' ' -f 3)
+        echo "Using nightlies...removing old ones."        
+        # If nightly images already exist, containers are stopped, destroyed,
+        # and rebuilt using newly pulled images
+        if [ $(docker images | grep nightly | tr -s ' ' | cut -d ' ' -f 3 | wc -l) -gt 0 ]; then
+          docker-compose down
+          docker-compose rm -f
+          docker-compose build --pull
+        fi
       else
         source .env-latest
         echo "Using latest, stable releases"
