@@ -111,7 +111,7 @@ sandbox () {
       echo "Stopping and removing running sandbox containers..."
       docker-compose down
       echo "Removing TICK images..."
-      docker rmi sandbox_documentation influxdb:latest telegraf:latest kapacitor:latest chronograf:latest flux:latest flux_wait:latest quay.io/influxdb/flux:latest chrono_config:latest chronograf:latest quay.io/influxdb/influxdb:nightly quay.io/influxdb/kapacitor:latest quay.io/influxdb/flux:nightly quay.io/influxdb/flux:latest chrono_config:latest chronograf:latest quay.io/influxdb/influxdb:nightly quay.io/influxdb/kapacitor:latest quay.io/influxdb/chronograf:nightly> /dev/null 2>&1
+      docker rmi sandbox_documentation influxdb:latest telegraf:latest kapacitor:latest chronograf:latest flux:latest flux_wait:latest quay.io/influxdb/flux:latest chrono_config:latest quay.io/influxdb/influxdb:nightly quay.io/influxdb/kapacitor:latest quay.io/influxdb/flux:nightly quay.io/influxdb/chronograf:nightly> /dev/null 2>&1
       docker rmi $(docker images -f "dangling=true" -q)
       ;;
     influxdb)
