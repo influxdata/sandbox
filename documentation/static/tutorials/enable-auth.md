@@ -24,7 +24,7 @@ Then change the [`[http] auth-enabled` variable](https://docs.influxdata.com/inf
   username = 'stanley'
   password = 'stellllAAAA'
   
-# ./telegraf/telegraf.confg
+# ./telegraf/telegraf.conf
 [[outputs.influxdb]]
   username = 'stanley'
   password = 'stellllAAAA'
