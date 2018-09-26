@@ -3,7 +3,20 @@ set -eo pipefail
 IFS=$'\n\t'
 
 sandbox () {
-  
+      if [ "$2" == "-nightly" ]; then
+        source .env-nightlies
+        echo "Using nightlies...removing old ones."        
+        # If nightly images already exist, containers are stopped, destroyed,
+        # and rebuilt using newly pulled images
+        if [ $(docker images | grep nightly | tr -s ' ' | cut -d ' ' -f 3 | wc -l) -gt 0 ]; then
+          docker-compose down
+          docker-compose rm -f
+          docker-compose build --pull
+        fi
+      else
+        source .env-latest
+        echo "Using latest, stable releases"
+      fi
   # Enter attaches users to a shell in the desired container
   enter () {
     case $2 in
@@ -23,16 +36,16 @@ sandbox () {
         echo "Entering /bin/bash session in the telegraf container..."
         docker-compose exec telegraf /bin/bash
         ;;
-      ifql)
-        echo "Entering /bin/bash session in the ifql container..."
-        docker-compose exec ifql /bin/sh
+      flux)
+        echo "Entering /bin/bash session in the flux container..."
+        docker-compose exec flux /bin/sh
         ;;
       *)
-        echo "sandbox enter (influxdb||chronograf||kapacitor||telegraf||ifql)"
+        echo "sandbox enter (influxdb||chronograf||kapacitor||telegraf||flux)"
         ;;
     esac
   }
-  
+
   # Logs streams the logs from the container to the shell
   logs () {
     case $2 in
@@ -52,12 +65,8 @@ sandbox () {
         echo "Following the logs from the telegraf container..."
         docker-compose logs -f telegraf
         ;;
-      ifql)
-        echo "Following the logs from the ifql container..."
-        docker-compose logs -f ifql
-        ;;
       *)
-        echo "sandbox logs (influxdb||chronograf||kapacitor||telegraf||ifql)"
+        echo "sandbox logs (influxdb||chronograf||kapacitor||telegraf)"
         ;;
     esac
   }
@@ -80,7 +89,7 @@ sandbox () {
       fi
       ;;
     down)
-      echo "Stopping and removing running sandbox containers..."
+      echo "Stopping sandbox containers..."
       docker-compose down
       ;;
     restart)
@@ -98,7 +107,8 @@ sandbox () {
       echo "Stopping and removing running sandbox containers..."
       docker-compose down
       echo "Removing TICK images..."
-      docker rmi sandbox_documentation influxdb:latest telegraf:latest kapacitor:latest chronograf:latest ifqld:latest ifqld_wait:latest quay.io/influxdb/ifqld:latest chrono_config:latest chronograf:latest > /dev/null 2>&1
+      docker rmi sandbox_documentation influxdb:latest telegraf:latest kapacitor:latest chronograf:latest chrono_config:latest quay.io/influxdb/influxdb:nightly quay.io/influxdb/chronograf:nightly> /dev/null 2>&1
+      docker rmi $(docker images -f "dangling=true" -q)
       ;;
     influxdb)
       echo "Entering the influx cli..."
@@ -120,15 +130,15 @@ sandbox () {
     *)
       cat <<-EOF
 sandbox commands:
-  up           -> spin up the sandbox environment
-  down         -> tear down the sandbox environment
-  restart      -> restart the sandbox
-  influxdb     -> attach to the influx cli
-  
-  enter (influxdb||kapacitor||chronograf||telegraf||ifql) -> enter the specified container
-  logs  (influxdb||kapacitor||chronograf||telegraf||ifql) -> stream logs for the specified container
-  
-  delete-data  -> delete all data created by the TICK Stack 
+  up (-nightly)      -> spin up the sandbox environment (latest or nightlies specified in the companion file)
+  down               -> tear down the sandbox environment (latest or nightlies specified in the companion file)
+  restart (-nightly) -> restart the sandbox
+  influxdb           -> attach to the influx cli
+
+  enter (influxdb||kapacitor||chronograf||telegraf) -> enter the specified container
+  logs  (influxdb||kapacitor||chronograf||telegraf) -> stream logs for the specified container
+
+  delete-data  -> delete all data created by the TICK Stack
   docker-clean -> stop and remove all running docker containers and images
   rebuild-docs -> rebuild the documentation image
 EOF
