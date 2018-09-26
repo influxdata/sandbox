@@ -65,12 +65,8 @@ sandbox () {
         echo "Following the logs from the telegraf container..."
         docker-compose logs -f telegraf
         ;;
-      flux)
-        echo "Following the logs from the flux container..."
-        docker-compose logs -f flux
-        ;;
       *)
-        echo "sandbox logs (influxdb||chronograf||kapacitor||telegraf||flux)"
+        echo "sandbox logs (influxdb||chronograf||kapacitor||telegraf)"
         ;;
     esac
   }
@@ -111,7 +107,7 @@ sandbox () {
       echo "Stopping and removing running sandbox containers..."
       docker-compose down
       echo "Removing TICK images..."
-      docker rmi sandbox_documentation influxdb:latest telegraf:latest kapacitor:latest chronograf:latest flux:latest flux_wait:latest quay.io/influxdb/flux:latest chrono_config:latest quay.io/influxdb/influxdb:nightly quay.io/influxdb/kapacitor:latest quay.io/influxdb/flux:nightly quay.io/influxdb/chronograf:nightly> /dev/null 2>&1
+      docker rmi sandbox_documentation influxdb:latest telegraf:latest kapacitor:latest chronograf:latest chrono_config:latest quay.io/influxdb/influxdb:nightly quay.io/influxdb/chronograf:nightly> /dev/null 2>&1
       docker rmi $(docker images -f "dangling=true" -q)
       ;;
     influxdb)
@@ -139,8 +135,8 @@ sandbox commands:
   restart (-nightly) -> restart the sandbox
   influxdb           -> attach to the influx cli
 
-  enter (influxdb||kapacitor||chronograf||telegraf||flux) -> enter the specified container
-  logs  (influxdb||kapacitor||chronograf||telegraf||flux) -> stream logs for the specified container
+  enter (influxdb||kapacitor||chronograf||telegraf) -> enter the specified container
+  logs  (influxdb||kapacitor||chronograf||telegraf) -> stream logs for the specified container
 
   delete-data  -> delete all data created by the TICK Stack
   docker-clean -> stop and remove all running docker containers and images
