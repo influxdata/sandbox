@@ -34,7 +34,7 @@ If you are starting from scracth, update your the `index-version` setting under 
 If you already have been running InfluxDB and have data that you wish to maintain and use, you need to convert your existing
 TSM-based shards to TSI-supported shards.
 
-Use `influx_inspect buildtsi` for converting your TSM-based shards to TSI-based shards. You can read more about using [`influx_inspect buildtsi` here.](https://docs.influxdata.com/influxdb/v1.6/tools/influx_inspect/#buildtsi)
+Use `influx_inspect buildtsi` for converting your TSM-based shards to TSI-based shards. You can read more about using [building TSI here.](https://docs.influxdata.com/influxdb/v1.6/tools/influx_inspect/#buildtsi)
 
 ### Start InfluxDB and Chronograf
 InfluxDB and Chronograf are all run as separate daemonized processes and must be started separately.
