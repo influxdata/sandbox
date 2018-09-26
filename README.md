@@ -16,8 +16,8 @@ sandbox commands:
   restart      -> restart the sandbox
   influxdb     -> attach to the influx cli
   
-  enter (influxdb||kapacitor||chronograf||telegraf||ifql) -> enter the specified container
-  logs  (influxdb||kapacitor||chronograf||telegraf||ifql) -> stream logs for the specified container
+  enter (influxdb||kapacitor||chronograf||telegraf) -> enter the specified container
+  logs  (influxdb||kapacitor||chronograf||telegraf) -> stream logs for the specified container
   
   delete-data  -> delete all data created by the TICK Stack
   docker-clean -> stop and remove all running docker containers
