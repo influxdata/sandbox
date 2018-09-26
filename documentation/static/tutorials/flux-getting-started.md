@@ -53,6 +53,11 @@ chronograf
 ### Configure Chronograf
 Open Chronograf in your browser of choice at [localhost:8888](http://localhost:8888].
 
+Select the `wrench` icon in the left-hand navigation bar which is the `Configuration` option.
+The following screen should apper:
+![Configuration](/images/config-chronograf.png)
+
+
 #### Connect to InfluxDB
 If not already connected to InfluxDB, you will be prompted for connection details.
 Provide the necessary credentials and save.
@@ -61,13 +66,15 @@ Provide the necessary credentials and save.
 
 #### Connect to Flux
 To connect Chronograf to the Flux engine within the InfluxDB OSS instance, click on the Flux Editor icon in the left navigation.
-The pre-populated credentials should work unless the `[flux]` settings were changed
-from their defaults or you've aliased Flux to a different domain.
 
-![Flux Editor Button](/images/flux-editor-btn.png)
 ![Connect Chronograf to Flux](/images/connect-to-flux.png)
 
-Once the connection is established, the Flux Editor will display.
+Ensure that the URL of the InfluxDB OSS instance is used -- and append that with the `/v2` suffix.
+For example, if you are runnging InfluxDB on your local machine and using `http://localhost:8086` to interact with InfluxDB,
+the Flux URL should be: `http://influxdb:8086/v2`.
+
+Once the connection is established, the Flux Editor is available from the Data Explorer and when you define cells within a
+Dashboard.  Keep in mind that BOTH InfluxQL and Flux can be used within InfluxDB 1.7.
 
 ## Using Flux with the Sandbox
 To use Flux with the [InfluxDB Sandbox](https://github.com/influxdata/sandbox),
