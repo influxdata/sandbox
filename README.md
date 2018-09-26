@@ -44,7 +44,7 @@ Click the Host icon in the left navigation bar to see your host  (named `telegra
 You can click on `system` hyperlink to see a pre-built dashboard visualizing the basic system stats for your 
 host, then check out the tutorials at `http://localhost:3010/tutorials`.
 
-If you are using the nightly builds and want to get started with Flux, make sure you check out the [Getting Started with Flux](./documentation/static/tutorials/flux-getting-started) tutorial.
+If you are using the nightly builds and want to get started with Flux, make sure you check out the [Getting Started with Flux](./documentation/static/tutorials/flux-getting-started.md) tutorial.
 
 >Note: see [influx-stress](https://github.com/influxdata/influx-stress) to create data for your sandbox. 
 >
