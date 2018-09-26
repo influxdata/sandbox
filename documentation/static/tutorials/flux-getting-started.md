@@ -133,6 +133,8 @@ For an introduction into the Flux syntax, view the
 [Basic Syntax](https://github.com/influxdata/platform/blob/master/query/README.md#basic-syntax)
 section in the Flux project `README`.
 
+You can also [explore a walkthrough of the language including a handful of simple expressions and what they mean.](https://github.com/influxdata/platform/blob/nc-training/TRAIN.md#learning-flux) 
+
 ## Additional Information
 [Flux Introduction Slides](https://speakerdeck.com/pauldix/flux-number-fluxlang-a-new-time-series-data-scripting-language)  
 [Flux Readme](https://github.com/influxdata/platform/blob/master/query/README.md)  
