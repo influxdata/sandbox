@@ -78,7 +78,6 @@ services:
       # Chronograf requires network access to InfluxDB and Kapacitor
       - influxdb
       - kapacitor
-      - flux
     ports:
       # The WebUI for Chronograf is served on port 8888
       - "8888:8888"
@@ -86,27 +85,9 @@ services:
       - kapacitor
       - influxdb
       - telegraf
-      - flux
 
   documentation:
     build:
       context: ./documentation
     ports:
       - "3010:3000"
-
-  flux:
-    build:
-      context: ./images/flux_wait/
-      dockerfile: ./${TYPE}/Dockerfile
-      args:
-        FLUX_TAG: ${FLUX_TAG}
-    image: "flux"
-    environment:
-      - "FLUXD_STORAGE_HOSTS=influxdb:8082"
-    ports:
-      # The API for Flux is served on port 8093
-      - "8093:8093"
-    links:
-      - influxdb
-    depends_on:
-      - influxdb
