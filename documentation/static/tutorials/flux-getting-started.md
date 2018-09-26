@@ -5,7 +5,7 @@ Its takes the power of InfluxQL and the TICKscript and combines them into a sing
 ## Setup Flux from scratch
 Setting up the TICK stack with Flux is pretty simple.
 If you're using the InfluxDB Sandbox, it's even simpler.
-__For instructions on using Flux with the sandbox, [skip down.]__(#using-flux-with-the-sandbox)
+**For instructions on using Flux with the sandbox, [skip down](#using-flux-with-the-sandbox)**.
 
 ### Install Chronograf and InfluxDB Nightlies
 Download the nightly builds Chronograf, and InfluxDB to get the most recent versions that include Flux and Flux-dependent
@@ -14,7 +14,7 @@ Nightly builds for each are available on the [InfluxData Downloads](https://port
 Once downloaded and unpackaged, move the binaries into your system's `$PATH`.
 
 ### Configure the storage service on InfluxDB
-InfluxDB stores it's data within a [Time-Structured Merge Tree (TSM)](https://docs.influxdata.com/influxdb/latest/concepts/storage_engine/) format. However, there are two potential indicies
+InfluxDB stores its data within a [Time-Structured Merge Tree (TSM)](https://docs.influxdata.com/influxdb/latest/concepts/storage_engine/) format. However, there are two potential indicies
 with the underlying TSM file format.  The default `index-version` is `inmem` or in-memory. Upon startup, the TSM files are
 read and the in-memory index is rebuilt.   
 
@@ -31,7 +31,7 @@ If you are starting from scracth, update your the `index-version` setting under 
   # ...
 ```
 
-If you already have been running InfluxDB and have data that you wish to maintain and use, you need to convert your existing 
+If you already have been running InfluxDB and have data that you wish to maintain and use, you need to convert your existing
 TSM-based shards to TSI-supported shards.
 
 Use `influx_inspect buildtsi` for converting your TSM-based shards to TSI-based shards. You can read more about using [`influx_inspect buildtsi` here.](https://docs.influxdata.com/influxdb/v1.6/tools/influx_inspect/#buildtsi)
@@ -51,12 +51,12 @@ chronograf
 ```
 
 ### Configure Chronograf
-Open Chronograf in your browser of choice at [localhost:8888](http://localhost:8888].
+Open Chronograf in your browser of choice at [localhost:8888](http://localhost:8888).
 
-Select the `wrench` icon in the left-hand navigation bar which is the `Configuration` option.
-The following screen should apper:
-![Configuration](/images/config-chronograf.png)
+Select the **wrench** icon in the left-hand navigation bar which is the **Configuration** option.
+The following screen should appear:
 
+![Configuration](/images/configure-chronograf.png)
 
 #### Connect to InfluxDB
 If not already connected to InfluxDB, you will be prompted for connection details.
@@ -69,12 +69,11 @@ To connect Chronograf to the Flux engine within the InfluxDB OSS instance, click
 
 ![Connect Chronograf to Flux](/images/connect-to-flux.png)
 
-Ensure that the URL of the InfluxDB OSS instance is used -- and append that with the `/v2` suffix.
-For example, if you are runnging InfluxDB on your local machine and using `http://localhost:8086` to interact with InfluxDB,
+Ensure the URL of the InfluxDB OSS instance is used -- and append that with the `/v2` suffix.
+For example, if you are running InfluxDB on your local machine and using `http://localhost:8086` to interact with InfluxDB,
 the Flux URL should be: `http://influxdb:8086/v2`.
 
-Once the connection is established, the Flux Editor is available from the Data Explorer and when you define cells within a
-Dashboard.  Keep in mind that BOTH InfluxQL and Flux can be used within InfluxDB 1.7.
+Once the connection is established, the **Flux Editor** is available from the **Data Explorer** and when defining cells within a Dashboard. Keep in mind that BOTH InfluxQL and Flux can be used within InfluxDB 1.7.
 
 ## Using Flux with the Sandbox
 To use Flux with the [InfluxDB Sandbox](https://github.com/influxdata/sandbox),
@@ -88,8 +87,8 @@ start the sandbox with the `-nightly` flag to pull the nightly builds of Influx 
 The Flux Editor makes working with Flux a visual process. It consists of 3 panes:
 
 1. **[The Script Editor](#script-editor)** Where the actual Flux code is written and displayed.
-2. **[The Schema Explorer](#schema-explorer)** Allows you to explore the actual structure of your data as you're building Flux scripts.
-3. **[The Flux Builder](#flux-builder)** A visual representation of your Flux script used to visualize and build your script.
+2. **[The Flux Builder](#flux-builder)** A visual representation of your Flux script used to visualize and build your script.
+3. **[The Schema Explorer](#schema-explorer)** Allows you to explore the actual structure of your data as you're building Flux scripts.
 
 ![Flux Editor](/images/flux-editor.png)
 
@@ -104,7 +103,7 @@ As queries are updated in the Flex Builder, the are updated in the script editor
 
 ### Schema Explorer
 The "Explore" pane of the Flux Editor allows you to visual explore the structure of your data.
-This is incredibly helpful as you're building out Flux queries
+This is incredibly helpful as you're building out Flux queries.
 
 ![Schema Explorer](/images/flux-editor-explore.png)
 
@@ -122,7 +121,7 @@ For an introduction into the Flux syntax, view the
 [Basic Syntax](https://github.com/influxdata/platform/blob/master/query/README.md#basic-syntax)
 section in the Flux project `README`.
 
-You can also [explore a walkthrough of the language including a handful of simple expressions and what they mean.](https://github.com/influxdata/platform/blob/nc-training/TRAIN.md#learning-flux) 
+You can also [explore a walkthrough of the language including a handful of simple expressions and what they mean.](https://github.com/influxdata/platform/blob/nc-training/TRAIN.md#learning-flux)
 
 ## Additional Information
 [Flux Introduction Slides](https://speakerdeck.com/pauldix/flux-number-fluxlang-a-new-time-series-data-scripting-language)  
