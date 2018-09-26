@@ -33,11 +33,6 @@ IF "%1"=="enter" (
         docker-compose exec telegraf /bin/bash
         GOTO End
     )
-    IF "%2"=="ifql" (
-        ECHO Entering ^/bin^/bash session in the ifql container...
-        docker-compose exec ifql /bin/sh
-        GOTO End
-    )
 )
 
 REM Logs streams the logs from the container to the shell
@@ -64,11 +59,6 @@ IF "%1"=="logs" (
     IF "%2"=="telegraf" (
         ECHO Following the logs from the telegraf container...
         docker-compose logs -f telegraf
-        GOTO End
-    )
-    IF "%2"=="ifql" (
-        ECHO Following the logs from the ifql container...
-        docker-compose logs -f ifql
         GOTO End
     )
 )
@@ -109,7 +99,7 @@ IF "%1"=="docker-clean" (
     ECHO Stopping all running sandbox containers...
     docker-compose down
     echo Removing TICK images...
-    docker rmi sandbox_documentation influxdb:latest telegraf:latest kapacitor:latest ifqld:latest ifqld_wait:latest quay.io/influxdb/ifqld:latest chrono_config:latest quay.io/influxdb/chronograf:latest >NUL 2>NUL
+    docker rmi sandbox_documentation influxdb:latest telegraf:latest kapacitor:latest chrono_config:latest quay.io/influxdb/chronograf:latest >NUL 2>NUL
     GOTO End
 )
 
@@ -134,8 +124,8 @@ ECHO   down         -^> tear down the sandbox environment
 ECHO   restart      -^> restart the sandbox
 ECHO   influxdb     -^> attach to the influx cli
 ECHO.
-ECHO   enter ^(influxdb^|^|kapacitor^|^|chronograf^|^|telegraf^|^|ifql^) -^> enter the specified container
-ECHO   logs  ^(influxdb^|^|kapacitor^|^|chronograf^|^|telegraf^|^|ifql^) -^> stream logs for the specified container
+ECHO   enter ^(influxdb^|^|kapacitor^|^|chronograf^|^|telegraf^) -^> enter the specified container
+ECHO   logs  ^(influxdb^|^|kapacitor^|^|chronograf^|^|telegraf^) -^> stream logs for the specified container
 ECHO.
 ECHO   delete-data  -^> delete all data created by the TICK Stack
 ECHO   docker-clean -^> stop and remove all running docker containers and images
