@@ -56,18 +56,18 @@ Open Chronograf in your browser of choice at [localhost:8888](http://localhost:8
 Select the **wrench** icon in the left-hand navigation bar which is the **Configuration** option.
 The following screen should appear:
 
-![Configuration](/images/configure-chronograf.png)
+![Configuration](../images/configure-chronograf.png)
 
 #### Connect to InfluxDB
 If not already connected to InfluxDB, you will be prompted for connection details.
 Provide the necessary credentials and save.
 
-![Connect Chronograf to InfluxDB](/images/connect-to-influxdb.png)
+![Connect Chronograf to InfluxDB](../images/connect-to-influxdb.png)
 
 #### Connect to Flux
 To connect Chronograf to the Flux engine within the InfluxDB OSS instance, click on the Flux Editor icon in the left navigation.
 
-![Connect Chronograf to Flux](/images/connect-to-flux.png)
+![Connect Chronograf to Flux](../images/connect-to-flux.png)
 
 Ensure the URL of the InfluxDB OSS instance is used -- and append that with the `/v2` suffix.
 For example, if you are running InfluxDB on your local machine and using `http://localhost:8086` to interact with InfluxDB,
@@ -90,7 +90,7 @@ The Flux Editor makes working with Flux a visual process. It consists of 3 panes
 2. **[The Flux Builder](#flux-builder)** A visual representation of your Flux script used to visualize and build your script.
 3. **[The Schema Explorer](#schema-explorer)** Allows you to explore the actual structure of your data as you're building Flux scripts.
 
-![Flux Editor](/images/flux-editor.png)
+![Flux Editor](../images/flux-editor.png)
 
 Each pane can be minimized, maximized, or closed depending on how you want to work.
 
@@ -99,20 +99,20 @@ Flux queries are written in the "Script" pane of the Flux Editor.
 You can also use the [Flux Builder](#flux-builder) to visually build out queries.
 As queries are updated in the Flex Builder, the are updated in the script editor.
 
-![Script Editor](/images/flux-editor-script.png)
+![Script Editor](../images/flux-editor-script.png)
 
 ### Schema Explorer
 The "Explore" pane of the Flux Editor allows you to visual explore the structure of your data.
 This is incredibly helpful as you're building out Flux queries.
 
-![Schema Explorer](/images/flux-editor-explore.png)
+![Schema Explorer](../images/flux-editor-explore.png)
 
 ### Flux Builder
 The "Build" pane is a visual representation of your Flux script that used to both visualize and build your script.
 As queries are updated in the Flex Builder, the are updated in the script editor.
 At any point in your Flux query, you can use the `yield()` function to visualize the current state of your query.
 
-![Flux Builder](/images/flux-editor-build.png)
+![Flux Builder](../images/flux-editor-build.png)
 
 ## Learn the basics of the Flux language
 Flux draws inspiration from programming languages such as Lisp, Elixir, Elm,
