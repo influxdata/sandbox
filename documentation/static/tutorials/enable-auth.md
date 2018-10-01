@@ -18,12 +18,12 @@ Then change the [`[http] auth-enabled` variable](https://docs.influxdata.com/inf
 # ./influxdb/config/influxdb.conf
 [http]
   auth-enabled = true
-  
+
 # ./kapacitor/config/kapacitor.conf
 [[influxdb]]
   username = 'stanley'
   password = 'stellllAAAA'
-  
+
 # ./telegraf/telegraf.conf
 [[outputs.influxdb]]
   username = 'stanley'
@@ -32,7 +32,7 @@ Then change the [`[http] auth-enabled` variable](https://docs.influxdata.com/inf
 
 Also make sure to add the credentials in the Chronograf instance:
 
-![add creds to chronograf](/images/add-password-chronograf.png)
+![add creds to chronograf](../images/add-password-chronograf.png)
 
 Once those steps are completed then you need to restart the sandbox to ensure authentication is enforced:
 
@@ -41,8 +41,5 @@ $ ./sandbox restart
 Stopping all processes...
 Starting all processes...
 Services available!
-$ 
+$
 ```
-
-
-
