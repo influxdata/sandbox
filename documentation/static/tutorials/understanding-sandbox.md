@@ -1,10 +1,10 @@
 # Understanding the Sandbox
 
-The InfluxData sandbox runs a complete InfluxData setup and provides a convenient way to learn to use all of the products in concert through the Chronograf management user interface. It also contains a learning portal with links to relevant pages. The sandbox is built with [Docker](https://www.docker.com/).
+The InfluxData Sandbox runs a complete InfluxData setup and provides a convenient way to learn to use all of the products in concert through the Chronograf management user interface. It also contains a learning portal with links to relevant pages. The Sandbox is built with [Docker](https://www.docker.com/).
 
 ### Configuration changes
 
-To change the configuration for any of the products just change the config file in the respective directory and restart sandbox:
+To change the configuration for any of the products, just change the config file in the respective directory and restart the Sandbox:
 
 ```bash
 $ vi ./influxdb/config/influxdb.conf
@@ -35,7 +35,7 @@ After initial startup you will see the data directories for `influxdb`, `chronog
 
 In the `sandbox` InfluxDB is collecting data that is created by `telegraf`, forwarding it to `kapacitor` for alerting, and serving dashboard queries from `chronograf`. The API is available at `http://localhost:8086`
 
-If you have an existing installation of InfluxDB on your computer, you can use the `influx` cli tool to run commands against the `sandbox` instances without additional configuration. If you do not have the tools then use the sandbox to attach to the cli:
+If you have an existing installation of InfluxDB on your computer, you can use the `influx` cli tool to run commands against the `sandbox` instances without additional configuration. If you do not have the tools then use the Sandbox to attach to the CLI:
 
 ```bash
 $ ./sandbox influxdb
@@ -54,7 +54,7 @@ _internal
 
 In the `sandbox` Kapacitor catches and processes data coming in from InfluxDB and can have tasks created on it by Chronograf. The API is available at `http://localhost:9092`
 
-While a downloaded copy of the `kapacitor` cli will work to run commands against the sandbox instance, you will need to use the cli in the container if you do not have it locally:
+While a downloaded copy of the `kapacitor` cli will work to run commands against the Sandbox instance, you will need to use the cli in the container if you do not have it locally:
 
 ```bash
 $ ./sandbox enter kapacitor

@@ -34,7 +34,7 @@ Also make sure to add the credentials in the Chronograf instance:
 
 ![add creds to chronograf](../images/add-password-chronograf.png)
 
-Once those steps are completed then you need to restart the sandbox to ensure authentication is enforced:
+Once those steps are completed then you need to restart the Sandbox to ensure authentication is enforced:
 
 ```
 $ ./sandbox restart

@@ -4,8 +4,8 @@ Its takes the power of InfluxQL and the TICKscript and combines them into a sing
 
 ## Setup Flux from scratch
 Setting up the TICK stack with Flux is pretty simple.
-If you're using the InfluxDB Sandbox, it's even simpler.
-**For instructions on using Flux with the sandbox, [skip down](#using-flux-with-the-sandbox)**.
+If you're using the InfluxData Sandbox, it's even simpler.
+**For instructions on using Flux with the Sandbox, [skip down](#using-flux-with-the-sandbox)**.
 
 ### Install Chronograf and InfluxDB Nightlies
 Download the nightly builds Chronograf, and InfluxDB to get the most recent versions that include Flux and Flux-dependent
@@ -76,8 +76,9 @@ the Flux URL should be: `http://influxdb:8086/v2`.
 Once the connection is established, the **Flux Editor** is available from the **Data Explorer** and when defining cells within a Dashboard. Keep in mind that BOTH InfluxQL and Flux can be used within InfluxDB 1.7.
 
 ## Using Flux with the Sandbox
-To use Flux with the [InfluxDB Sandbox](https://github.com/influxdata/sandbox),
-start the sandbox with the `-nightly` flag to pull the nightly builds of Influx services.
+To use Flux with the [InfluxData Sandbox](https://github.com/influxdata/sandbox),
+start the Sandbox with the `-nightly` flag to pull the nightly builds of InfluxDB and
+Chronograf.
 
 ```bash
 ./sandbox up -nightly
