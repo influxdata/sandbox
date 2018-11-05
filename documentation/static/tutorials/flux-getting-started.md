@@ -37,9 +37,9 @@ __Remember to use CTL+D to exit the Flux REPL.__
 ### Get started with the Flux Editor via Chronograf
 The Flux Editor makes working with Flux a visual process. It consists of 3 panes:
 
-1. **[The Schema Explorer](#schema-explorer)** Allows you to explore the actual structure of your data as you're building Flux scripts.
-2. **[The Script Editor](#script-editor)** Where the actual Flux code is written and displayed.
-3. **[The Function Explorer](#function-explorer)** An online quick reference for many Flux functions.
+1. **[Schema Explorer](#schema-explorer)** Allows you to explore the actual structure of your data as you're building Flux scripts.
+2. **[Script Editor](#script-editor)** Where the actual Flux code is written and displayed.
+3. **[Function Explorer](#function-explorer)** An online quick reference for many Flux functions.
 
 ![Flux Editor](../images/flux-editor.png)
 
