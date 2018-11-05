@@ -53,15 +53,24 @@ This is incredibly helpful as you're building out Flux queries.
 
 ### Script Editor
 Flux queries are written in the "Script" pane of the Flux Editor.
-You can also use various 'helper tools' around the Script Editor to rapidly build out queries.
-As queries are updated in the Flex Builder, the are updated in the script editor.
-
 ![Script Editor](../images/flux-editor-script.png)
 
+You can use the "explorer" tools around the Script Editor to help you rapidly build out queries.
+There is also a Script Wizard as part of the Script Editor which allows you to quickly build out the first few 
+lines of your Flux Script.  
+
+![Script Wizard](../images/flux-script-wizard.png)
+
+After you've written your query you can hit the "Run Script" button in the Script Editor to execute the query. 
+
+You may want to toggle the "View Raw Data" button above the query visualization panel to switch between your 
+selected visualization and the data returned by the query you've constructed.  The default visualization type is
+a line graph.  But, you can select the "Visualization" at the top middle of the screen to alter how the query 
+results are displayed.
+
 ### Function Explorer
-The "Build" pane is a visual representation of your Flux script that used to both visualize and build your script.
-As queries are updated in the Flex Builder, the are updated in the script editor.
-At any point in your Flux query, you can use the `yield()` function to visualize the current state of your query.
+The Function Explorer lists the various Flux Functions and in-line documentation describing the function's description,
+arguments, and an example for how to use it.  Scroll through the functions to explore the power of Flux.
 
 ![Flux Builder](../images/flux-function-explorer.png)
 
