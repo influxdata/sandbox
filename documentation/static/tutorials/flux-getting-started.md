@@ -85,5 +85,5 @@ You can also [explore a walkthrough of the language including a handful of simpl
 
 ## Additional Information
 [Flux Documentation](https://docs.influxdata.com/flux/latest/)  
-[Flux Specification](https://github.com/influxdata/platform/blob/master/query/docs/SPEC.md)   
+[Flux Specification](https://github.com/influxdata/flux/blob/master/docs/SPEC.md)   
 [Flux Introduction Slides](https://speakerdeck.com/pauldix/flux-number-fluxlang-a-new-time-series-data-scripting-language) 
