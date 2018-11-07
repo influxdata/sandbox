@@ -84,6 +84,6 @@ section of the documentation.
 You can also [explore a walkthrough of the language including a handful of simple expressions and what they mean.](https://github.com/influxdata/platform/blob/nc-training/TRAIN.md#learning-flux)
 
 ## Additional Information
-[Flux Documentation](https://docs.influxdata.com/flux/latest/introduction/getting-started/)  
-[Flux Specification](https://github.com/influxdata/platform/blob/master/query/docs/SPEC.md)
+[Flux Documentation](https://docs.influxdata.com/flux/latest/)  
+[Flux Specification](https://github.com/influxdata/platform/blob/master/query/docs/SPEC.md) . 
 [Flux Introduction Slides](https://speakerdeck.com/pauldix/flux-number-fluxlang-a-new-time-series-data-scripting-language) 
