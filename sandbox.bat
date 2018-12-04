@@ -10,7 +10,7 @@ IF %ERRORLEVEL% == 0 SET interactive=0
 REM Enter attaches users to a shell in the desired container
 IF "%1"=="enter" (
     IF "%2"=="" (
-        ECHO sandbox enter ^(influxdb^|^|chronograf^|^|kapacitor^|^|telegraf^|^|ifql^)
+        ECHO sandbox enter ^(influxdb^|^|chronograf^|^|kapacitor^|^|telegraf^)
         GOTO End
     )
     IF "%2"=="influxdb" (
