@@ -4,6 +4,12 @@ TITLE sandbox.bat - TICK Sandbox
 SET interactive=1
 SET COMPOSE_CONVERT_WINDOWS_PATHS=1
 
+SET TYPE=latest
+SET TELEGRAF_TAG=latest
+SET INFLUXDB_TAG=latest
+SET CHRONOGRAF_TAG=latest
+SET KAPACITOR_TAG=latest
+
 ECHO %cmdcmdline% | FIND /i "/c"
 IF %ERRORLEVEL% == 0 SET interactive=0
 
