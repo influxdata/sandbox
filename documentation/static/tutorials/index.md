@@ -2,7 +2,7 @@
 
 + [Understanding the Sandbox](/tutorials/understanding-sandbox)
 + [Getting started with Flux](/tutorials/flux-getting-started)
-+ [Learning Flux](https://github.com/influxdata/platform/blob/nc-training/TRAIN.md)
++ [Learning Flux](https://docs.influxdata.com/flux)
 
 ## Tutorials
 

@@ -81,7 +81,6 @@ For an introduction into the Flux syntax, view the
 [Flux Getting Started](https://docs.influxdata.com/flux/latest/introduction/getting-started/)
 section of the documentation.
 
-You can also [explore a walkthrough of the language including a handful of simple expressions and what they mean.](https://github.com/influxdata/platform/blob/nc-training/TRAIN.md#learning-flux)
 
 ## Additional Information
 [Flux Documentation](https://docs.influxdata.com/flux/latest/)  
