@@ -69,8 +69,22 @@ IF "%1"=="logs" (
     )
 )
 
+IF "%1"=="up" && "%2"=="-nightly" (
+    ECHO Spinning up nightly Docker Images...
+    ECHO If this is your first time starting sandbox this might take a minute...
+    SET TYPE=nightly
+    SET INFLUXDB_TAG=nightly
+    SET CHRONOGRAF_TAG=nightly
+    docker-compose up -d --build
+    ECHO Opening tabs in browser...
+    timeout /t 3 /nobreak > NUL
+    START "" http://localhost:3010
+    START "" http://localhost:8888
+    GOTO End
+)
+
 IF "%1"=="up" (
-    ECHO Spinning up Docker Images...
+    ECHO Spinning up latest, stable Docker Images...
     ECHO If this is your first time starting sandbox this might take a minute...
     docker-compose up -d --build
     ECHO Opening tabs in browser...
@@ -79,6 +93,7 @@ IF "%1"=="up" (
     START "" http://localhost:8888
     GOTO End
 )
+
 
 IF "%1"=="down" (
     ECHO Stopping and removing running sandbox containers...
