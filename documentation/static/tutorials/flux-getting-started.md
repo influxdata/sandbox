@@ -3,7 +3,7 @@ Flux is InfluxData's new data language designed for querying, analyzing, and act
 Its takes the power of InfluxQL and the TICKscript and combines them into a single, unified data scripting language.
 
 ## Using Flux with the Sandbox
-Starting with the 1.7 releases of Chrongoraf and InfluxDB, Flux is now completely integrated within 
+Starting with the 1.7 releases of Chronograf and InfluxDB, Flux is now completely integrated within 
 the [InfluxData Sandbox](https://github.com/influxdata/sandbox).
 
 There will be ongoing updates and refinements made to the language and the implementation.  So, you can always grab the
