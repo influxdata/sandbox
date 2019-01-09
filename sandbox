@@ -5,7 +5,7 @@ IFS=$'\n\t'
 sandbox () {
       if [ "$2" == "-nightly" ]; then
         source .env-nightlies
-        echo "Using nightlies...removing old ones."        
+        echo "Using nightlies...removing old ones."
         # If nightly images already exist, containers are stopped, destroyed,
         # and rebuilt using newly pulled images
         if [ $(docker images | grep nightly | tr -s ' ' | cut -d ' ' -f 3 | wc -l) -gt 0 ]; then
@@ -36,12 +36,8 @@ sandbox () {
         echo "Entering /bin/bash session in the telegraf container..."
         docker-compose exec telegraf /bin/bash
         ;;
-      flux)
-        echo "Entering /bin/bash session in the flux container..."
-        docker-compose exec flux /bin/sh
-        ;;
       *)
-        echo "sandbox enter (influxdb||chronograf||kapacitor||telegraf||flux)"
+        echo "sandbox enter (influxdb||chronograf||kapacitor||telegraf)"
         ;;
     esac
   }
@@ -114,6 +110,10 @@ sandbox () {
       echo "Entering the influx cli..."
       docker-compose exec influxdb /usr/bin/influx
       ;;
+    flux)
+      echo "Entering the flux repl..."
+      docker-compose exec influxdb /usr/bin/influx -type flux
+      ;;
     rebuild-docs)
       echo "Rebuilding documentation container..."
       docker build -t sandbox_documentation documentation/ > /dev/null 2>&1
@@ -134,6 +134,7 @@ sandbox commands:
   down               -> tear down the sandbox environment (latest or nightlies specified in the companion file)
   restart (-nightly) -> restart the sandbox
   influxdb           -> attach to the influx cli
+  flux               -> attach to the flux cli
 
   enter (influxdb||kapacitor||chronograf||telegraf) -> enter the specified container
   logs  (influxdb||kapacitor||chronograf||telegraf) -> stream logs for the specified container
