@@ -15,7 +15,7 @@ sandbox commands:
   down         -> tear down the sandbox environment
   restart      -> restart the sandbox
   influxdb     -> attach to the influx cli
-  flux         -> attach to the flux cli
+  flux         -> attach to the flux REPL
 
   enter (influxdb||kapacitor||chronograf||telegraf) -> enter the specified container
   logs  (influxdb||kapacitor||chronograf||telegraf) -> stream logs for the specified container
