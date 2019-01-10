@@ -120,7 +120,7 @@ IF "%1"=="docker-clean" (
     ECHO Stopping all running sandbox containers...
     docker-compose down
     echo Removing TICK images...
-    docker rmi sandbox_documentation influxdb:latest telegraf:latest kapacitor:latest chrono_config:latest quay.io/influxdb/chronograf:latest >NUL 2>NUL
+    docker-compose down --rmi=all
     GOTO End
 )
 
