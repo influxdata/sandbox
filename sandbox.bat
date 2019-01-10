@@ -129,7 +129,7 @@ ECHO   up           -^> spin up the sandbox environment
 ECHO   down         -^> tear down the sandbox environment
 ECHO   restart      -^> restart the sandbox
 ECHO   influxdb     -^> attach to the influx cli
-ECHO   flu          -^> attach to the flux cli
+ECHO   flux         -^> attach to the flux REPL
 ECHO.
 ECHO   enter ^(influxdb^|^|kapacitor^|^|chronograf^|^|telegraf^) -^> enter the specified container
 ECHO   logs  ^(influxdb^|^|kapacitor^|^|chronograf^|^|telegraf^) -^> stream logs for the specified container
