@@ -130,6 +130,12 @@ IF "%1"=="influxdb" (
     GOTO End
 )
 
+IF "%1"=="flux" (
+    ECHO Entering the flux cli...
+    docker-compose exec influxdb /usr/bin/influx -type flux
+    GOTO End
+)
+
 IF "%1"=="rebuild-docs" (
     echo Rebuilding documentation container...
     docker build -t sandbox_documentation documentation\  >NUL 2>NUL
@@ -144,6 +150,7 @@ ECHO   up           -^> spin up the sandbox environment
 ECHO   down         -^> tear down the sandbox environment
 ECHO   restart      -^> restart the sandbox
 ECHO   influxdb     -^> attach to the influx cli
+ECHO   flux         -^> attach to the flux REPL
 ECHO.
 ECHO   enter ^(influxdb^|^|kapacitor^|^|chronograf^|^|telegraf^) -^> enter the specified container
 ECHO   logs  ^(influxdb^|^|kapacitor^|^|chronograf^|^|telegraf^) -^> stream logs for the specified container
