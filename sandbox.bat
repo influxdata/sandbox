@@ -69,7 +69,7 @@ IF "%1"=="logs" (
     )
 )
 
-IF "%1"=="up"&&"%2"=="-nightly" (
+IF "%1"=="up" AND "%2"=="-nightly" (
     ECHO Spinning up nightly Docker Images...
     ECHO If this is your first time starting sandbox this might take a minute...
     SET TYPE=nightly
