@@ -4,13 +4,19 @@ TITLE sandbox.bat - TICK Sandbox
 SET interactive=1
 SET COMPOSE_CONVERT_WINDOWS_PATHS=1
 
+SET TYPE=latest
+SET TELEGRAF_TAG=latest
+SET INFLUXDB_TAG=latest
+SET CHRONOGRAF_TAG=latest
+SET KAPACITOR_TAG=latest
+
 ECHO %cmdcmdline% | FIND /i "/c"
 IF %ERRORLEVEL% == 0 SET interactive=0
 
 REM Enter attaches users to a shell in the desired container
 IF "%1"=="enter" (
     IF "%2"=="" (
-        ECHO sandbox enter ^(influxdb^|^|chronograf^|^|kapacitor^|^|telegraf^|^|ifql^)
+        ECHO sandbox enter ^(influxdb^|^|chronograf^|^|kapacitor^|^|telegraf^)
         GOTO End
     )
     IF "%2"=="influxdb" (
@@ -63,15 +69,30 @@ IF "%1"=="logs" (
     )
 )
 
+
 IF "%1"=="up" (
-    ECHO Spinning up Docker Images...
-    ECHO If this is your first time starting sandbox this might take a minute...
-    docker-compose up -d --build
-    ECHO Opening tabs in browser...
-    timeout /t 3 /nobreak > NUL
-    START "" http://localhost:3010
-    START "" http://localhost:8888
-    GOTO End
+    IF "%2"=="-nightly" (
+        ECHO Spinning up nightly Docker Images...
+        ECHO If this is your first time starting sandbox this might take a minute...
+        SET TYPE=nightly
+        SET INFLUXDB_TAG=nightly
+        SET CHRONOGRAF_TAG=nightly
+        docker-compose up -d --build
+        ECHO Opening tabs in browser...
+        timeout /t 3 /nobreak > NUL
+        START "" http://localhost:3010
+        START "" http://localhost:8888
+        GOTO End  
+    ) ELSE (
+        ECHO Spinning up latest, stable Docker Images...
+        ECHO If this is your first time starting sandbox this might take a minute...
+        docker-compose up -d --build
+        ECHO Opening tabs in browser...
+        timeout /t 3 /nobreak > NUL
+        START "" http://localhost:3010
+        START "" http://localhost:8888
+        GOTO End
+    )
 )
 
 IF "%1"=="down" (
@@ -99,7 +120,7 @@ IF "%1"=="docker-clean" (
     ECHO Stopping all running sandbox containers...
     docker-compose down
     echo Removing TICK images...
-    docker rmi sandbox_documentation influxdb:latest telegraf:latest kapacitor:latest chrono_config:latest quay.io/influxdb/chronograf:latest >NUL 2>NUL
+    docker-compose down --rmi=all
     GOTO End
 )
 
