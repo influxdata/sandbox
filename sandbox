@@ -1,6 +1,16 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -eo pipefail
 IFS=$'\n\t'
+
+if ! [ -x "$(command -v docker)" ]; then
+  echo 'Error: docker is not installed.' >&2
+  exit 1
+fi
+
+if ! [ -x "$(command -v docker-compose)" ]; then
+  echo 'Error: docker-compose is not installed.' >&2
+  exit 1
+fi
 
 sandbox () {
       if [ "$2" == "-nightly" ]; then
@@ -78,8 +88,8 @@ sandbox () {
         open http://localhost:3010
         open http://localhost:8888
       elif [ $(uname) == "Linux" ]; then
-        sensible-browser http://localhost:8888
-        sensible-browser http://localhost:3010
+        xdg-open http://localhost:8888
+        xdg-open http://localhost:3010
       else
         echo "no browser detected..."
       fi
