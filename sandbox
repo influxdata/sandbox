@@ -157,4 +157,6 @@ EOF
   esac
 }
 
-sandbox $@
+pushd `dirname $0` > /dev/null
+    sandbox $@
+popd > /dev/null
