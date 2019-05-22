@@ -1,4 +1,4 @@
-FROM alpine:3.6
+FROM alpine:3.9
 
 EXPOSE 3010:3000
 
