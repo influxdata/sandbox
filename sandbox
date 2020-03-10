@@ -34,20 +34,20 @@ sandbox () {
         echo "Entering /bin/bash session in the influxdb container..."
         docker-compose exec influxdb /bin/bash
         ;;
-      chronograf)
-        echo "Entering /bin/sh session in the chronograf container..."
-        docker-compose exec chronograf /bin/sh
-        ;;
+      # chronograf)
+      #   echo "Entering /bin/sh session in the chronograf container..."
+      #   docker-compose exec chronograf /bin/sh
+      #   ;;
       kapacitor)
         echo "Entering /bin/bash session in the kapacitor container..."
         docker-compose exec kapacitor /bin/bash
         ;;
-      telegraf)
-        echo "Entering /bin/bash session in the telegraf container..."
-        docker-compose exec telegraf /bin/bash
-        ;;
+      # telegraf)
+      #   echo "Entering /bin/bash session in the telegraf container..."
+      #   docker-compose exec telegraf /bin/bash
+      #   ;;
       *)
-        echo "sandbox enter (influxdb||chronograf||kapacitor||telegraf)"
+        echo "sandbox enter (influxdb||kapacitor)"
         ;;
     esac
   }
@@ -59,20 +59,21 @@ sandbox () {
         echo "Following the logs from the influxdb container..."
         docker-compose logs -f influxdb
         ;;
-      chronograf)
-        echo "Following the logs from the chronograf container..."
-        docker-compose logs -f chronograf
-        ;;
+      # chronograf)
+      #   echo "Following the logs from the chronograf container..."
+      #   docker-compose logs -f chronograf
+      #   ;;
       kapacitor)
         echo "Following the logs from the kapacitor container..."
         docker-compose logs -f kapacitor
         ;;
-      telegraf)
-        echo "Following the logs from the telegraf container..."
-        docker-compose logs -f telegraf
-        ;;
+      # telegraf)
+      #   echo "Following the logs from the telegraf container..."
+      #   docker-compose logs -f telegraf
+      #   ;;
       *)
-        echo "sandbox logs (influxdb||chronograf||kapacitor||telegraf)"
+        #echo "sandbox logs (influxdb||chronograf||kapacitor||telegraf)"
+        echo "sandbox logs (influxdb||kapacitor)"
         ;;
     esac
   }
@@ -106,14 +107,17 @@ sandbox () {
       echo "Services available!"
       ;;
     delete-data)
-      echo "deleting all influxdb, kapacitor and chronograf data..."
-      rm -rf kapacitor/data influxdb/data chronograf/data
+      # echo "deleting all influxdb, kapacitor and chronograf data..."
+      # rm -rf kapacitor/data influxdb/data chronograf/data
+      echo "deleting all influxdb, kapacitor data..."
+      rm -rf kapacitor/data influxdb/data
       ;;
     docker-clean)
       echo "Stopping and removing running sandbox containers..."
       docker-compose down
       echo "Removing TICK images..."
-      docker rmi sandbox_documentation influxdb:latest telegraf:latest kapacitor:latest chronograf:latest chrono_config:latest quay.io/influxdb/influxdb:nightly quay.io/influxdb/chronograf:nightly> /dev/null 2>&1
+      #docker rmi sandbox_documentation influxdb:latest telegraf:latest kapacitor:latest chronograf:latest chrono_config:latest quay.io/influxdb/influxdb:nightly quay.io/influxdb/chronograf:nightly> /dev/null 2>&1
+      docker rmi sandbox_documentation influxdb:latest kapacitor:latest quay.io/influxdb/influxdb:nightly> /dev/null 2>&1
       docker rmi $(docker images -f "dangling=true" -q)
       ;;
     influxdb)
@@ -124,13 +128,13 @@ sandbox () {
       echo "Entering the flux repl..."
       docker-compose exec influxdb /usr/bin/influx -type flux
       ;;
-    rebuild-docs)
-      echo "Rebuilding documentation container..."
-      docker build -t sandbox_documentation documentation/ > /dev/null 2>&1
-      echo "Restarting..."
-      docker-compose down > /dev/null 2>&1
-      docker-compose up -d --build > /dev/null 2>&1
-      ;;
+    # rebuild-docs)
+    #   echo "Rebuilding documentation container..."
+    #   docker build -t sandbox_documentation documentation/ > /dev/null 2>&1
+    #   echo "Restarting..."
+    #   docker-compose down > /dev/null 2>&1
+    #   docker-compose up -d --build > /dev/null 2>&1
+    #   ;;
     enter)
       enter $@
       ;;
@@ -146,12 +150,11 @@ sandbox commands:
   influxdb           -> attach to the influx cli
   flux               -> attach to the flux REPL
 
-  enter (influxdb||kapacitor||chronograf||telegraf) -> enter the specified container
-  logs  (influxdb||kapacitor||chronograf||telegraf) -> stream logs for the specified container
+  enter (influxdb||kapacitor) -> enter the specified container
+  logs  (influxdb||kapacitor) -> stream logs for the specified container
 
   delete-data  -> delete all data created by the TICK Stack
   docker-clean -> stop and remove all running docker containers and images
-  rebuild-docs -> rebuild the documentation image
 EOF
       ;;
   esac
