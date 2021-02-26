@@ -1,4 +1,4 @@
-# InfluxData Sandbox
+# InfluxData 1.x Sandbox
 
 ***Keep in mind that InfluxDB 2.x is now available and available via [Docker Hub](https://hub.docker.com/_/influxdb).  InfluxDB 2.x includes a native user interface, batch-style 
 task processing and more.***
