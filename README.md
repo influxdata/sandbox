@@ -1,6 +1,10 @@
 # InfluxData Sandbox
 
-This repo is a quick way to get the entire TICK Stack spun up and working together. It uses [Docker](https://www.docker.com/) to spin up the full TICK stack in a connected fashion. This is heavily tested on MacOS and should mostly work on Linux and Windows.
+***Keep in mind that InfluxDB 2.x is now available and available via [Docker Hub](https://hub.docker.com/_/influxdb).  InfluxDB 2.x includes a native user interface, batch-style 
+task processing and more.***
+
+This repo is a quick way to get the entire 1.x TICK Stack spun up and working together. It uses [Docker](https://www.docker.com/) to spin up the full TICK stack in a connected 
+fashion. This is heavily tested on MacOS and should mostly work on Linux and Windows.
 
 To get started you need a running docker installation. If you don't have one, you can download Docker for [Mac](https://www.docker.com/docker-mac) or [Windows](https://www.docker.com/docker-windows), or follow the installation instructions for Docker CE for your [Linux distribution](https://docs.docker.com/engine/installation/#server).
 
