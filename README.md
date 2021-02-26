@@ -1,7 +1,7 @@
 # InfluxData 1.x Sandbox
 
 ***[InfluxDB 2.x is now available](https://portal.influxdata.com/downloads/) and available via [Docker Hub](https://hub.docker.com/_/influxdb).  
-InfluxDB 2.x includes a native user interface, batch-style task processing and more.***
+InfluxDB 2.x includes a native user interface, batch-style task processing and more. [Get Started Here!](https://docs.influxdata.com/influxdb/v2.0/get-started/)***
 
 This repo is a quick way to get the entire 1.x TICK Stack spun up and working together. It uses [Docker](https://www.docker.com/) to spin up the full TICK stack in a connected 
 fashion. This is heavily tested on MacOS and should mostly work on Linux and Windows.
