@@ -8,6 +8,7 @@ services:
       args:
         INFLUXDB_TAG: ${INFLUXDB_TAG}
     image: "influxdb"
+    restart: always
     volumes:
       # Mount for influxdb data directory
       - ./influxdb/data:/var/lib/influxdb
@@ -28,6 +29,7 @@ services:
       args:
         TELEGRAF_TAG: ${TELEGRAF_TAG}
     image: "telegraf"
+    restart: always
     profiles:
       - donotstart
     environment:
@@ -51,6 +53,7 @@ services:
       args:
         KAPACITOR_TAG: ${KAPACITOR_TAG}
     image: "kapacitor"
+    restart: always
     profiles:
       - donotstart
     volumes:
@@ -73,6 +76,7 @@ services:
       args:
         CHRONOGRAF_TAG: ${CHRONOGRAF_TAG}
     image: "chrono_config"
+    restart: always
     profiles:
       - donotstart
     environment:
@@ -95,5 +99,6 @@ services:
   documentation:
     build:
       context: ./documentation
+    restart: always
     ports:
       - "3010:3000"
