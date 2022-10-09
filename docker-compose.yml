@@ -28,6 +28,8 @@ services:
       args:
         TELEGRAF_TAG: ${TELEGRAF_TAG}
     image: "telegraf"
+    profiles:
+      - donotstart
     environment:
       HOSTNAME: "telegraf-getting-started"
     # Telegraf requires network access to InfluxDB
@@ -49,6 +51,8 @@ services:
       args:
         KAPACITOR_TAG: ${KAPACITOR_TAG}
     image: "kapacitor"
+    profiles:
+      - donotstart
     volumes:
       # Mount for kapacitor data directory
       - ./kapacitor/data/:/var/lib/kapacitor
@@ -69,6 +73,8 @@ services:
       args:
         CHRONOGRAF_TAG: ${CHRONOGRAF_TAG}
     image: "chrono_config"
+    profiles:
+      - donotstart
     environment:
       RESOURCES_PATH: "/usr/share/chronograf/resources"
     volumes:
