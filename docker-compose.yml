@@ -14,12 +14,18 @@ services:
       - ./influxdb/data:/var/lib/influxdb
       # Mount for influxdb configuration
       - ./influxdb/config/:/etc/influxdb/
+      # Mount for ssl certificate folder
+      - ./ssl:/etc/ssl
     ports:
       # The API for InfluxDB is served on port 8086
       - "8086:8086"
       - "8082:8082"
       # UDP Port
       - "8089:8089/udp"
+    
+    environment:
+      INFLUXD_TLS_CERT: /etc/ssl/certificate.crt
+      INFLUXD_TLS_KEY: /etc/ssl/private.key
 
   telegraf:
     # Full tag list: https://hub.docker.com/r/library/telegraf/tags/
